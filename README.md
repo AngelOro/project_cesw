@@ -1,7 +1,7 @@
 # proyect_cesw
 Proyecto de asignatura de Construcción de Elementos de Software Web.  
 
-## Titulo del proyecto:
+## Título del proyecto:
 SotranSIV (Sistema de Información de vehículos)
 
 ## Descripción del problema:
@@ -38,7 +38,7 @@ Después de un análisis se llegó a la conclusión que el aplicativo tendrá lo
 ## Objetivo general
 Desarrollar un sistema de información para almacenar el histórico de consumos de los vehículos y las ganancias de la empresa.
 
-## Objetivos especificos
+## Objetivos específicos
   *Determinar los datos requeridos por el cliente para la elaboración de los diagramas lógicos (UML), mediante un previo análisis del funcionamiento de la empresa 
   
   *Establecer el prototipo de las ventanas del sistema para ver de manera fiel cómo va a quedar la aplicación y si es necesario optimizar el diseño, apariencia y usabilidad de la misma, utilizando Herramientas que faciliten la construcción de las mismas. 
