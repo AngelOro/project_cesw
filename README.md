@@ -49,5 +49,7 @@ Desarrollar un sistema de información para almacenar el histórico de consumos 
 
 
 ![alt tag](C:\Users\Edwar\Documents\proyect_cesw)
+## Caso de uso
 
+![Caso de uso](caso_sotranSIV.png)
 
