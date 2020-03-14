@@ -48,6 +48,7 @@ Desarrollar un sistema de información para almacenar el histórico de consumos 
   *Demostrar la calidad del desarrollo por medio de pruebas automatizadas, las cuales ayudarán a simular la interacción del usuario con el sistema, por medio del patrón de diseño Screenplay.
 
 
-![alt tag](C:\Users\Edwar\Documents\proyect_cesw\caso_sotranSIV.png)
 
+## Caso de uso
+![Caso de uso](caso_sotranSIV.png)
 
