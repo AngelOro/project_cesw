@@ -52,3 +52,5 @@ Desarrollar un sistema de información para almacenar el histórico de consumos 
 ## Caso de uso
 ![Caso de uso](caso_sotranSIV.png)
 
+
+https://trello.com/b/iPziehK5/sotransiv
