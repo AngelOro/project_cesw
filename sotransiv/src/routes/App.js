@@ -9,6 +9,7 @@ import Vehiculo from '../pages/Vehiculo.jsx'
 function App() {
   return (
     <BrowserRouter>
+    
       <Route exact path="/" component={Login} />
       <Route path="/Main" component={Main} />
       <Route path="/Vehiculo" component={Vehiculo} />
