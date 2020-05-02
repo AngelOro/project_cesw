@@ -7,7 +7,9 @@ function Vehiculo () {
             <div className="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
                 <h1>SotranSIV</h1>
             </div>
-
+            <Link to="/RegisterVehicle" >
+            <button   class="btn-1 btn-primary">Registrar Vehiculo</button>
+            </Link>
         </div>
 
     )
