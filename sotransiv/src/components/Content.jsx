@@ -3,19 +3,32 @@ import { link, Link } from 'react-router-dom';
 
 function Content() {
     return (
-        <div className="container">
-            <div className="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
-                <h1>SotranSIV</h1>
-            </div>
-            <Link to="/Vehiculo">
-                <button type="button" class="btn-1 btn-primary">Vehiculos</button>
-            </Link>
-            <Link to="/">
-                <button type="button" class="btn-1 btn-primary">Conductores</button>
+        <div className="container" id="container-content">
+            <div className="row">
+                <div className="col-md-7">
+                    <Link to="/Vehiculo">
+                        <button type="button" class="btn-1 btn-primary" id="btn-vehiculo">Vehiculos</button>
+                    </Link>
+                </div>
+                <div className="col-md-3">
+                    <Link to="/Conductor">
+                        <button type="button" class="btn-2 btn-primary">Conductores</button>
 
-            </Link>
-            <button type="button" class="btn-1 btn-primary">Envios</button>
-            <button type="button" class="btn-1 btn-primary">Reportes</button>
+                    </Link>
+                </div>
+            </div>
+            <div className="row">
+                <div className="col-md-7">
+                    <Link to="/Envio">
+                        <button type="button" class="btn-1 btn-primary">Envios</button>
+                    </Link>
+                </div>
+                <div className="col-md-3">
+                    <Link to="/Reporte">
+                        <button type="button" class="btn-2 btn-primary">Reportes</button>
+                    </Link>
+                </div>
+            </div>
 
         </div>
 

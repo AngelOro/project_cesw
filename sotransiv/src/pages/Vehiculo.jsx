@@ -1,16 +1,19 @@
 import React from 'react';
+import Header from '../components/Header';
+import VehiculoContent from '../components/VehiculoContent';
 import {link,Link} from 'react-router-dom';
 
-function Vehiculo () {
-    return (
-        <div className="container">
-            <div className="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
-                <h1>SotranSIV</h1>
-            </div>
+const Vehiculo = () => {//deja de ser un componente stateful no contiene {}
+  // siempre se retorna un unico componente contenedor
+  return (
+    <>
+      
+      <Header />
+      <VehiculoContent />      
 
-        </div>
-
-    )
+    </>
+  );
 }
+
 
 export default Vehiculo;
