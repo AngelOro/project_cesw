@@ -1,14 +1,14 @@
 import React from 'react';
 import FormVehiculo from '../components/FormVehicle';
+import Header from '../components/Header';
 
-
-function Register(){
+function RegisterVehicle(){
     return(
         <>
-        
+        <Header/>
         <FormVehiculo/>
         </>
     )
 }
 
-export default Register;
+export default RegisterVehicle;

@@ -1,5 +1,6 @@
 import React from 'react';
 import '../styles/Header.css';
+import { link, Link } from 'react-router-dom';
 import myPng from '../images/logo.png';
 
 
@@ -9,14 +10,21 @@ function Header() {
         <nav class="navbar navbar-expand-sm justify-content-end" id="nav">
             <ul class="navbar-nav">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">
-                        Home
-                    </a>
+                    <Link to="/Main">
+                        <a class="nav-link" href="#">
+                            Home
+                        </a>
+                    </Link>
+
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        About
+                    <Link to="/">
+                        <a class="nav-link" href="#">
+                            About
                     </a>
+
+                    </Link>
+
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">

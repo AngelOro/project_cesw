@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-import '../styles/Body.css'
+import '../styles/VehicleContent.css';
+import { link, Link } from 'react-router-dom';
 
-class Body extends Component {
+class VehicleContent extends Component {
   render() {
     return (
       <div class="container" id="container-body">
@@ -31,9 +32,9 @@ class Body extends Component {
               </svg>
             </a>
             <div className="container">
-              <button type="button" class="btn btn-primary " id="btn-search">
-                + Nuevo
-              </button>
+              <Link to="/RegisterVehicle">
+                <button type="button" class="btn btn-primary " id="btn-search">Nuevo</button>
+              </Link>
             </div>
           </div>
 
@@ -214,4 +215,4 @@ class Body extends Component {
   }
 }
 
-export default Body;
+export default VehicleContent;
