@@ -10,7 +10,8 @@ const Vehicle = () => {//deja de ser un componente stateful no contiene {}
     <>
       
       <Header />
-      <VehicleContent />      
+      <VehicleContent />    
+        
 
     </>
   );
