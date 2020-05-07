@@ -11,7 +11,11 @@
   font-size: x-large;
 }
 
-
 #image{
   text-align: left;
+}
+
+#icon-edit{
+  color: black;
+  font-size: x-large;
 }
