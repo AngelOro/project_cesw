@@ -4,7 +4,7 @@ Proyecto de asignatura de Construcción de Elementos de Software Web.
 ## Informe Dos
 
 ## Modelo Relacional
-![Modelo Relacional]('Modelo E-R SotranSIV.png')
+![Modelo Relacional]("Modelo E-R SotranSIV.png")
 
 ## Modelo Wireframe
 https://marvelapp.com/e6aaceh
