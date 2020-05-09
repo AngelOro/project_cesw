@@ -8,7 +8,7 @@ import Report from '../pages/Report';
 import Conduct from '../pages/Conduct';
 import Vehicle from '../pages/Vehicle';
 import RegisterVehicle from '../pages/RegisterVehicle'
-import '@fortawesome/fontawesome-free/css/fontawesome.min.css'
+//import '@fortawesome/fontawesome-free/css/fontawesome.min.css'
 
 
 function App() {
