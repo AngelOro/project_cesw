@@ -1,6 +1,6 @@
-
 #btn-search{
-    background-color: #07A195;
+  background-color: #07A195;
+  margin-right: 10px;
 }
 
 #edit-icon{
@@ -18,4 +18,16 @@
 #icon-edit{
   color: black;
   font-size: x-large;
+}
+
+#form-input{
+margin-left: 400px;
+}
+
+#row-container{
+  margin-top: 50px;
+}
+
+.tittle{
+  margin-top: 50px;
 }
