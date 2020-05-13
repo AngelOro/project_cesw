@@ -1,27 +1,27 @@
 import React from 'react';
-import myPng from '../images/logo.png';
+import logo from '../images/Logo_color.png';
 import '../styles/Login.css'
 import { link, Link } from 'react-router-dom';
 
 class Login extends React.Component {
     render() {
         return (
+            <div className="container-login">
+                <div class="capa-gradiente"></div>
             <form className="form-signin" id="form">
-                <img className="mb-4" src={myPng} alt="" width="150" height="150"></img>
-                <label for="inputEmail" className="sr-only">Email address</label>
-                <input type="email" id="inputEmail" className="form-control" placeholder="Email address" required autofocus></input>
-                <label for="inputPassword" className="sr-only">Password</label>
+                <img className="mb-4 logo" src={logo} alt=""></img>
+                <label for="inputUser" className="sr-only">Usuario</label>
+                <input type="text" id="inputUser" className="form-control form-login" placeholder="Usuario" required autofocus></input>
+                <label for="inputPassword" className="sr-only">Clave</label>
 
-                <input type="password" id="inputPassword" className="form-control" placeholder="Password" required></input>
+                <input type="password" id="inputPassword" className="form-control form-login" placeholder="Clave" required></input>
                 <div className="checkbox mb-3"></div>
-                <label>
-                    <input type="checkbox" value="remember-me"></input>remenber me
-                        </label>
+                
                 <Link to="/Main">
-                    <button className="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+                    <button className="btn-login btn-lg btn-primary btn-block" type="submit">Ingresar</button>
                 </Link>
-                <p className="mt-2 mb-1 text-muted">&copy; 2020-2021</p>
             </form>
+            </div>
         )
     }
 }

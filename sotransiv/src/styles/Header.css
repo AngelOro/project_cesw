@@ -1,12 +1,17 @@
 #nav {
     background: #07a195;
     font-size: large;
+    height: 80px;
   }
   
   .nav-link {
     color: white;
   }
-  
+  .logoWhite{
+    height: 80px;
+    padding: 0px;
+    margin: 15px;
+  }
   h3 {
     text-align: center;
     color: #47525e;
