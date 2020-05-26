@@ -7,7 +7,8 @@ import Shipping from '../pages/Shipping';
 import Report from '../pages/Report';
 import Conduct from '../pages/Conduct';
 import Vehicle from '../pages/Vehicle';
-import RegisterVehicle from '../pages/RegisterVehicle'
+import RegisterVehicle from '../pages/RegisterVehicle';
+import RegisterShipping from '../pages/RegisterShipping';
 //import '@fortawesome/fontawesome-free/css/fontawesome.min.css'
 
 
@@ -21,6 +22,7 @@ function App() {
       <Route path="/Report" component={Report} />
       <Route path="/Conduct" component={Conduct} />
       <Route path="/RegisterVehicle" component={RegisterVehicle}/>
+      <Route path="/RegisterShipping" component={RegisterShipping}/>
     </BrowserRouter>
   );
 
