@@ -1,8 +1,10 @@
+﻿
 import React, { Component } from "react";
 import foto from "../images/icono.png";
 import "../styles/FormRegister.css";
 import Axios from "axios";
 import { link, Link } from "react-router-dom";
+
 
 class FormVehiculo extends Component {
   constructor(props) {
@@ -107,12 +109,14 @@ class FormVehiculo extends Component {
 
                   {/* <input formControlName="foto" /> */}
                   {/* <div className="middle">
+
                                     <div className="text" >Tomar foto</div>                                    
                                         <label className="text"> Subir foto
                                         <input type="file" />
                                             <span></span>
                                          </label>
                                 </div> */}
+
                 </div>
                 <button type="file" className="btn-primary btn-register">
                   Subir Imagen

@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import "../styles/VehicleContent.css";
+//import "../styles/VehicleContent.css";
 import { link, Link } from "react-router-dom";
 import Axios from "axios";
 
 
-class VehicleContent extends Component {
+class ShippingContent extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -51,7 +51,7 @@ class VehicleContent extends Component {
 
     return (
       <div className="container">
-        <h3 className="tittle">Vehiculos</h3>
+        <h3 className="tittle">Envios</h3>
         <div className="row" id="row-container">
           <div className="col-md-7">
             <div className="form-row" id="form-input">
@@ -76,7 +76,7 @@ class VehicleContent extends Component {
             </div>
           </div>
           <div className="col-md-5">
-            <Link to="/RegisterVehicle">
+            <Link to="/RegisterShipping">
               <button
                 type="button"
                 className="btn-3 btn-primary "
@@ -91,15 +91,16 @@ class VehicleContent extends Component {
         <table className="table table-striped">
           <thead>
             <tr>
-              <th scope="col">Placa</th>
-              <th scope="col">Modelo</th>
-              <th scope="col">Matricula</th>
-              <th scope="col">Marca</th>
-              <th scope="col">Acciones</th>
+              <th scope="col">Codigo Envio</th>
+              <th scope="col">Producto</th>
+              <th scope="col">Vehiculo Asignado</th>
+              <th scope="col">Ciudad Origen</th>
+              <th scope="col">Ciudad Destino</th>
+              <th scope="col">Estado Envio</th>
             </tr>
           </thead>
-          {this.state.data.map((character) => (
-            <tbody>
+            {this.state.data.map((character) => (
+              <tbody>
               <tr>
                 <td>{character.placa}</td>
                 <td>{character.modelo}</td>
@@ -112,8 +113,15 @@ class VehicleContent extends Component {
             </tbody>
           ))}
         </table>
+        {/* <h1>Ciclo de vida </h1>
+        <h2>Vehiculo Informacion</h2>
+        <ul>
+          {this.state.data.map((character) => (
+            <li>{character.placa}</li>
+          ))}
+        </ul> */}
       </div>
     );
   }
 }
-export default VehicleContent;
+export default ShippingContent;
