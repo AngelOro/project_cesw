@@ -3,24 +3,25 @@ import "../styles/VehicleContent.css";
 import { link, Link } from "react-router-dom";
 import Axios from "axios";
 
-class VehicleContent extends Component {
+class ConductorContent extends Component {
   constructor(props) {
     super(props);
     this.state = {
       loading: true,
       error: null,
       data: {},
+      dataVehicles: {},
     };
   }
 
   _fetchData() {
-    Axios.get("https://api-sotransiv-8xli76wpt.now.sh/vehicles")
+    Axios.get("https://conductors.now.sh/conductors")
       .then((res) => {
-        const vehiclesData = res.data;
-        console.log(vehiclesData);
+        const conductorsData = res.data;
+        console.log(conductorsData);
         this.setState({
           loading: false,
-          data: vehiclesData,
+          data: conductorsData,
         });
       })
       .catch((error) => {
@@ -50,7 +51,7 @@ class VehicleContent extends Component {
 
     return (
       <div className="container">
-        <h3 className="tittle">Vehiculos</h3>
+        <h3 className="tittle">Conductores</h3>
         <div className="row" id="row-container">
           <div className="col-md-7">
             <div className="form-row" id="form-input">
@@ -75,7 +76,7 @@ class VehicleContent extends Component {
             </div>
           </div>
           <div className="col-md-5">
-            <Link to="/RegisterVehicle">
+            <Link to="/RegisterConduct">
               <button
                 type="button"
                 className="btn-3 btn-primary "
@@ -90,20 +91,25 @@ class VehicleContent extends Component {
         <table className="table table-striped">
           <thead>
             <tr>
-              <th scope="col">Placa</th>
-              <th scope="col">Modelo</th>
-              <th scope="col">Matricula</th>
-              <th scope="col">Marca</th>
+              <th scope="col">Identificacion</th>
+              <th scope="col">Nombre</th>
+              <th scope="col">Primer apellido</th>
+              <th scope="col">Segundo apellido</th>
+              <th scope="col">Telefono</th>
+              <th scope="col">Vehiculo Asignado</th>
               <th scope="col">Acciones</th>
             </tr>
           </thead>
+
           {this.state.data.map((character) => (
             <tbody>
               <tr>
-                <td>{character.placa}</td>
-                <td>{character.modelo}</td>
-                <td>{character.matricula}</td>
-                <td>{character.marca}</td>
+                <td>{character.identificacion}</td>
+                <td>{character.nombre}</td>
+                <td>{character.primer_apellido}</td>
+                <td>{character.segundo_apellido}</td>
+                <td>{character.telefono}</td>
+                <td></td>
                 <td>
                   <i className="fas fa-edit" id="icon-edit"></i>
                 </td>
@@ -115,4 +121,5 @@ class VehicleContent extends Component {
     );
   }
 }
-export default VehicleContent;
+
+export default ConductorContent;
