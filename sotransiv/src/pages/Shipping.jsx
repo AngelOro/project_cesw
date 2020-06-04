@@ -1,14 +1,13 @@
 import React from 'react';
-import Header from '../components/Header';
 import ShippingContent from '../components/ShippingContent';
+import MainContent from '../components/MainContent';
 
 
 
 function Shipping() {
     return (
         <>
-
-            <Header />
+            <MainContent />
             <ShippingContent />
 
 
