@@ -1,5 +1,4 @@
-
-#container-content {
+ #container-content {
     width: 100%;
     padding-right: 15px;
     padding-left: 15px;
@@ -22,14 +21,15 @@
     border-radius: 100%;
     width: 204px;
     height: 194px;
-}
+} 
 
-.h1-main{
+ .h1-main{
 
     padding-left: 30%;
 
 }
 .row{
     padding-block-end: 20px;
-}
+} 
 
+   

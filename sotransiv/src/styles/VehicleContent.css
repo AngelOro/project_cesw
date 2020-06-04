@@ -1,6 +1,9 @@
 #btn-search{
   background-color: #07A195;
-  margin-right: 10px;
+  width: 100px;
+    height: 35px;
+    margin-left: 100px;
+
 }
 
 #edit-icon{
@@ -19,9 +22,22 @@
   color: black;
   font-size: x-large;
 }
+.ion-md-search{
+  color: black;
+}
 
 #form-input{
-margin-left: 400px;
+margin-left: 100px;
+padding: 20px 0;
+}
+
+.btn-new{
+  padding: 20px 0;
+
+}
+
+.input-search{
+  height: 40px;
 }
 
 #row-container{
@@ -30,4 +46,7 @@ margin-left: 400px;
 
 .tittle{
   margin-top: 50px;
+  text-align: center;
+  color: black;
+
 }
