@@ -18,6 +18,7 @@ class ConductorContent extends Component {
     };
   }
 
+  
   openModal() {
     this.setState({
       visible: true,
