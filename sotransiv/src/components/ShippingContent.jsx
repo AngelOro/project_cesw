@@ -197,10 +197,11 @@ class ShippingContent extends Component {
                     </div>
                   </div>
 
-                  <button type="submit" class="btn btn-primary">Sign in</button>
+                  <button type="submit" class="btn btn-primary">Registrar</button>
+                  <button type="submit" class="btn btn-primary" href="javascript:void(0);" onClick={() => this.closeModal()}>Cerrar</button>
                 </form>
               </div>
-              <a href="javascript:void(0);" onClick={() => this.closeModal()}>Close</a>
+              
             </div>
           </Modal>
         </section>
