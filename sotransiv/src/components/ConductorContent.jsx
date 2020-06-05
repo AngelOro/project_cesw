@@ -5,8 +5,6 @@ import Axios from "axios";
 import Modal from "react-awesome-modal";
 import "../styles/FormRegister.css";
 
-
-
 class ConductorContent extends Component {
   constructor(props) {
     super(props);
@@ -14,11 +12,12 @@ class ConductorContent extends Component {
       loading: true,
       error: null,
       data: {},
-      isShowing: false,
+      vehiculoBackup:[],
+      visible: false,
+      textBuscar: "",
     };
   }
 
-  
   openModal() {
     this.setState({
       visible: true,
@@ -53,6 +52,22 @@ class ConductorContent extends Component {
     this._fetchData();
   }
 
+  filter(event){
+    var text = event.target.value
+    const data = this.state.vehiculoBackup
+    const newData = data.filter(function(item){
+        const itemData = item.identificacion.toUpperCase()
+        const itemDataDescp = item.nombre.toUpperCase()
+        const campo = itemData+" "+itemDataDescp
+        const textData = text.toUpperCase()
+        return campo.indexOf(textData) > -1
+    })
+    this.setState({
+        data: newData,
+        textBuscar: text,
+    })
+ }
+
   render() {
     if (this.state.loading) {
       return (
@@ -76,6 +91,8 @@ class ConductorContent extends Component {
                 className="input-search"
                 type="text"
                 placeholder="Buscar"
+                value={this.state.text}
+                onChange={(text) => this.filter(text)}
               />
               <a className="nav-link" href="#">
                 <i className="icon ion-md-search lead mr-2"></i>
