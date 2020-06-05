@@ -103,6 +103,7 @@ class ConductorContent extends Component {
             </div>
           </div>
           <div className="col-md-2 btn-new">
+
             <button
               type="button"
               className="btn-3 btn-primary "

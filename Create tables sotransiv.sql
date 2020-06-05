@@ -103,14 +103,14 @@ create table tbl_envios(
 );
 
 create table tbl_detalle_producto(
-id_detalle integer,
-id_producto integer,
-id_envio integer,
-cantidad integer not null,
-numero_lote varchar(20) not null,
-constraint pk_id_detalle primary key (id_detalle),
-constraint fk_id_producto foreign key (id_producto) references tbl_productos(id_producto),
-constraint fk_id_envio foreign key (id_envio) references tbl_envios (id_envio)
+	id_detalle integer,
+	id_producto integer,
+	id_envio integer,
+	cantidad integer not null,
+	numero_lote varchar(20) not null,
+	constraint pk_id_detalle primary key (id_detalle),
+	constraint fk_id_producto foreign key (id_producto) references tbl_productos(id_producto),
+	constraint fk_id_envio foreign key (id_envio) references tbl_envios (id_envio)
 )
 
 

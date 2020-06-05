@@ -13,7 +13,6 @@ import RegisterShipping from '../pages/RegisterShipping';
 //import '@fortawesome/fontawesome-free/css/fontawesome.min.css'
 
 
-
 function App() {
   return (
     <BrowserRouter>
