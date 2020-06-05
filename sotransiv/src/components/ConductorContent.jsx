@@ -63,7 +63,6 @@ class ConductorContent extends Component {
       const campo = itemIdentificacion + " " + itemNombre + " " + itemTel;
       const textData = text.toUpperCase();
       return campo.indexOf(textData) > -1;
-      
     });
     this.setState({
       data: newData,
@@ -93,7 +92,7 @@ class ConductorContent extends Component {
               <input
                 className="input-search"
                 type="text"
-                placeholder="Buscar"
+                placeholder=" Buscar"
                 value={this.state.text}
                 onChange={(text) => this.filter(text)}
               />
@@ -103,7 +102,6 @@ class ConductorContent extends Component {
             </div>
           </div>
           <div className="col-md-2 btn-new">
-
             <button
               type="button"
               className="btn-3 btn-primary "
@@ -119,8 +117,8 @@ class ConductorContent extends Component {
         <section>
           <Modal
             visible={this.state.visible}
-            width="950"
-            height="700"
+            width="800"
+            height="630"
             effect="fadeInUp"
             onClickAway={() => this.closeModal()}
           >
@@ -129,7 +127,7 @@ class ConductorContent extends Component {
                 <h3 className="form-title">Registrar conductor</h3>
                 <form className="formConduct">
                   <div className="form-row">
-                    <div className="col-md-4 leftSeparator">
+                    <div className="col-md-5 leftSeparator">
                       <div className="form-group">
                         <label>Identificacion</label>
                         <input type="text" className="form-control" />
@@ -155,7 +153,7 @@ class ConductorContent extends Component {
                       </div>
                     </div>
 
-                    <div className="col-md-4 leftSeparator">
+                    <div className="col-md-5 leftSeparator">
                       <div className="form-group">
                         <label>Nombre</label>
                         <input type="text" className="form-control" />
@@ -177,7 +175,26 @@ class ConductorContent extends Component {
                       </div>
                     </div>
                   </div>
-                  <div className="form-group col-md-4">
+                  <div className="form-row btn-action conduct">
+                    <div className="form-group col-md-3">
+                      <button
+                        type="submit"
+                        className="btn-primary btn-formvehicle"
+                      >
+                        Registrar
+                      </button>
+                    </div>
+                    <div className="form-group col-md-3">
+                      <button
+                        type="button"
+                        className="btn-primary btn-formvehicle"
+                        onClick={() => this.closeModal()}
+                      >
+                        Cancelar
+                      </button>
+                    </div>
+                  </div>
+                  {/* <div className="form-group col-md-4">
                     <button
                       type="submit"
                       className="btn-primary btn-formConduct"
@@ -185,7 +202,7 @@ class ConductorContent extends Component {
                     >
                       Registrar conductor
                     </button>
-                  </div>
+                  </div> */}
                 </form>
               </div>
             </div>
@@ -202,8 +219,8 @@ class ConductorContent extends Component {
             </tr>
           </thead>
           <tbody className="body-table">
-          {this.state.data.map((character) => (
-            <tr className="tr-table">
+            {this.state.data.map((character) => (
+              <tr className="tr-table">
                 <td>{character.identificacion}</td>
                 <td>
                   {character.nombre +
@@ -218,7 +235,7 @@ class ConductorContent extends Component {
                   <i className="fas fa-edit" id="icon-edit"></i>
                 </td>
               </tr>
-          ))}
+            ))}
           </tbody>
         </table>
       </div>

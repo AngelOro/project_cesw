@@ -80,6 +80,10 @@
   margin-top: 50px;
 }
 
+.form-vehiculo label{
+color: black;
+}
+
 .tittle {
   margin-top: 30px;
   text-align: center;

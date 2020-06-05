@@ -14,7 +14,7 @@ class VehicleContent extends Component {
       data: {},
       visible: false,
       vehiculoBackup: {},
-      textBuscar: '',
+      textBuscar: "",
       loadingForm: true,
       errorForm: null,
       placa: "",
@@ -28,7 +28,7 @@ class VehicleContent extends Component {
       fecha_poliza_extra: "",
     };
   }
-      
+
   openModal() {
     this.setState({
       visible: true,
@@ -78,21 +78,21 @@ class VehicleContent extends Component {
       });
   }
 
-  filter(event){
-    var text = event.target.value
-    const data = this.state.vehiculoBackup
-    const newData = data.filter(function(item){
-        const itemData = item.placa.toUpperCase()
-        const itemDataDescp = item.marca.toUpperCase()
-        const campo = itemData+" "+itemDataDescp
-        const textData = text.toUpperCase()
-        return campo.indexOf(textData) > -1
-    })
+  filter(event) {
+    var text = event.target.value;
+    const data = this.state.vehiculoBackup;
+    const newData = data.filter(function (item) {
+      const itemData = item.placa.toUpperCase();
+      const itemDataDescp = item.marca.toUpperCase();
+      const campo = itemData + " " + itemDataDescp;
+      const textData = text.toUpperCase();
+      return campo.indexOf(textData) > -1;
+    });
     this.setState({
-        data: newData,
-        textBuscar: text,
-    })
- }
+      data: newData,
+      textBuscar: text,
+    });
+  }
   componentDidMount() {
     this._fetchData();
     this._fetchdataForm();
@@ -163,7 +163,9 @@ class VehicleContent extends Component {
               <input
                 className="input-search"
                 type="text"
-                placeholder="Buscar" value={this.state.text} onChange={(text) => this.filter(text)}
+                placeholder=" Buscar"
+                value={this.state.text}
+                onChange={(text) => this.filter(text)}
               />
               <a className="nav-link" href="#">
                 <i className="icon ion-md-search lead mr-2"></i>
@@ -186,7 +188,7 @@ class VehicleContent extends Component {
           <Modal
             visible={this.state.visible}
             width="950"
-            height="700"
+            height="600"
             effect="fadeInUp"
             onClickAway={() => this.closeModal()}
           >
@@ -327,7 +329,7 @@ class VehicleContent extends Component {
                   </div>
                 </div>
                 <div className="form-row btn-action">
-                  <div className="form-group col-md-3">
+                <div className="form-group col-md-3">
                     <button
                       type="submit"
                       className="btn-primary btn-formvehicle"
@@ -335,12 +337,20 @@ class VehicleContent extends Component {
                       Registrar
                     </button>
                   </div>
+                  <div className="form-group col-md-3">
+                    <button
+                      type="button"
+                      className="btn-primary btn-formvehicle"
+                      onClick={() => this.closeModal()}
+                    >
+                      Cancelar
+                    </button>
+                  </div>
                 </div>
               </form>
             </div>
           </Modal>
         </section>
-       
 
         <table className="table table-striped" id="tableContent">
           <thead className="head-table">
@@ -348,12 +358,12 @@ class VehicleContent extends Component {
               <th scope="col">Placa</th>
               <th scope="col">Modelo</th>
               <th scope="col">Matricula</th>
-              <th scope="col">  Marca</th>
-              <th scope="col">  Acciones</th>
+              <th scope="col"> Marca</th>
+              <th scope="col"> Acciones</th>
             </tr>
           </thead>
           <tbody className="body-table">
-          {this.state.data.map((character) => (
+            {this.state.data.map((character) => (
               <tr className="tr-table">
                 <td>{character.placa}</td>
                 <td>{character.modelo}</td>
@@ -364,7 +374,7 @@ class VehicleContent extends Component {
                   <i className="fas fa-edit" id="icon-edit"></i>
                 </td>
               </tr>
-          ))}
+            ))}
           </tbody>
         </table>
       </div>
