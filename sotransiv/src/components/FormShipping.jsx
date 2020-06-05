@@ -91,9 +91,7 @@ class FormShipping extends Component {
     }
 
     return (
-
-
-      <div className="container">
+     <div className="container">
         <div clasName="row">
           <h3 className="title">Registar Envio</h3>
 
@@ -153,7 +151,7 @@ class FormShipping extends Component {
 
 
           <div class="form-row">
-            
+
             <div class="form-group col-md-3">
               <label for="inputState">Ciudad Origen</label>
               <select id="inputState" class="form-control">
@@ -161,7 +159,7 @@ class FormShipping extends Component {
                 <option>...</option>
               </select>
             </div>
-            
+
             <div class="form-group col-md-3">
               <label for="inputState">Ciudad Destino</label>
               <select id="inputState" class="form-control">
@@ -169,7 +167,7 @@ class FormShipping extends Component {
                 <option>...</option>
               </select>
             </div>
-            
+
             <div class="form-group col-md-3">
               <label for="inputState">Fecha Inicio</label>
               <select id="inputState" class="form-control">
@@ -196,11 +194,10 @@ class FormShipping extends Component {
               </label>
             </div>
           </div>
+          
           <button type="submit" class="btn btn-primary">Sign in</button>
         </form>
       </div>
-
-
     );
   }
 }
