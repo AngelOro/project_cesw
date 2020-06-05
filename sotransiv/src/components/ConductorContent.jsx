@@ -3,7 +3,7 @@ import "../styles/VehicleContent.css";
 import { link, Link } from "react-router-dom";
 import Axios from "axios";
 import Modal from "react-awesome-modal";
-//import "../styles/FormRegister.css";
+import "../styles/FormRegister.css";
 
 
 
@@ -169,7 +169,6 @@ class ConductorContent extends Component {
             </div>
           </Modal>
         </section>
-
         <table className="table table-striped">
           <thead>
             <tr>

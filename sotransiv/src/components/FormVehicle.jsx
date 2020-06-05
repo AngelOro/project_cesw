@@ -10,9 +10,9 @@ class FormVehiculo extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      loading: true,
-      error: null,
-      data: {},
+      loadingForm: true,
+      errorForm: null,
+      dataForm: {},
       placa: "",
       modelo: "",
       marca: "",
@@ -25,26 +25,26 @@ class FormVehiculo extends Component {
     };
   }
 
-  _fetchData() {
+  _fetchdataForm() {
     Axios.get("https://api-sotransiv-8xli76wpt.now.sh/vehicles")
       .then((res) => {
-        const vehiclesData = res.data;
-        console.log(vehiclesData);
+        const vehiclesdataForm = res.dataForm;
+        console.log(vehiclesdataForm);
         this.setState({
-          loading: false,
-          data: vehiclesData,
+          loadingForm: false,
+          dataForm: vehiclesdataForm,
         });
       })
-      .catch((error) => {
+      .catch((errorForm) => {
         this.setState({
-          loading: false,
-          error: isNaN,
+          loadingForm: false,
+          errorForm: isNaN,
         });
       });
   }
 
   componentDidMount() {
-    this._fetchData();
+    this._fetchdataForm();
   }
 
   changeHandler = (e) => {
@@ -58,10 +58,10 @@ class FormVehiculo extends Component {
       .then((response) => {
         console.log(response);
       })
-      .catch((error) => {
+      .catch((errorForm) => {
         this.setState({
-          loading: false,
-          error: isNaN,
+          loadingForm: false,
+          errorForm: isNaN,
         });
       });
   };
@@ -78,7 +78,7 @@ class FormVehiculo extends Component {
       fecha_poliza,
       fecha_poliza_extra,
     } = this.state;
-    if (this.state.loading) {
+    if (this.state.loadingForm) {
       return (
         <div className="App">
           <h1>Cargando...</h1>
@@ -86,11 +86,12 @@ class FormVehiculo extends Component {
       );
     }
 
-    if (this.state.error !== null) {
-      return <h1>Error</h1>;
+    if (this.state.errorForm !== null) {
+      return <h1>errorForm</h1>;
     }
 
     return (
+
       <div className="form-vehiculo">
         <h3 className="form-title">Registar Vehículo</h3>
         <form onSubmit={this.submitHandler}>
@@ -123,8 +124,8 @@ class FormVehiculo extends Component {
                 </button>
               </div>
               {/* <!--<div className="col-12 profilePictureButtons">
-                                <button type="button" className="btn buttonFill" title="Tomar foto" data-toggle="tooltip" data-placement="top" className="custom-tooltip"><i className="fas fa-camera" aria-hidden="true"></i></button>
-                                <button type="button" className="btn buttonFill" title="Subir foto" data-toggle="tooltip" data-placement="top" className="custom-tooltip"><i className="fas fa-upload" aria-hidden="true"></i></button>
+                                <button type="button" className="btn buttonFill" title="Tomar foto" dataForm-toggle="tooltip" dataForm-placement="top" className="custom-tooltip"><i className="fas fa-camera" aria-hidden="true"></i></button>
+                                <button type="button" className="btn buttonFill" title="Subir foto" dataForm-toggle="tooltip" dataForm-placement="top" className="custom-tooltip"><i className="fas fa-upload" aria-hidden="true"></i></button>
                             </div>--> */}
             </div>
             <div className="col-md-4 leftSeparator">
@@ -180,7 +181,7 @@ class FormVehiculo extends Component {
                   value={tipo_vehiculo}
                   onChange={this.changeHandler}
                 >
-                  {this.state.data.map((character) => (
+                  {this.state.dataForm.map((character) => (
                     <option>{character.tipo_vehiculo}</option>
                   ))}
                 </select>
@@ -272,6 +273,7 @@ class FormVehiculo extends Component {
           </div>
         </form>
       </div>
+    
     );
   }
 }
