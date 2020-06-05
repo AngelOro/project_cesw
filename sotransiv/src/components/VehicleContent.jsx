@@ -13,7 +13,7 @@ class VehicleContent extends Component {
       error: null,
       data: {},
       visible: false,
-      vehiculoBackup: [],
+      vehiculoBackup: {},
       textBuscar: '',
       loadingForm: true,
       errorForm: null,
@@ -157,7 +157,7 @@ class VehicleContent extends Component {
       <div className="container">
         <h3 className="tittle">Vehículos</h3>
         <div className="row" id="row-container">
-          <div className="col-md-6">
+          <div className="col-md-10">
             <div className="form-row" id="form-input">
               <input
                 className="input-search"
@@ -169,7 +169,7 @@ class VehicleContent extends Component {
               </a>
             </div>
           </div>
-          <div className="col-md-6 btn-new">
+          <div className="col-md-2 btn-new">
             <button
               type="button"
               className="btn-3 btn-primary "
@@ -342,28 +342,29 @@ class VehicleContent extends Component {
        
 
         <table className="table table-striped" id="tableContent">
-          <thead>
+          <thead className="head-table">
             <tr>
               <th scope="col">Placa</th>
               <th scope="col">Modelo</th>
               <th scope="col">Matricula</th>
-              <th scope="col">Marca</th>
-              <th scope="col">Acciones</th>
+              <th scope="col">  Marca</th>
+              <th scope="col">  Acciones</th>
             </tr>
           </thead>
+          <tbody className="body-table">
           {this.state.data.map((character) => (
-            <tbody>
-              <tr>
+              <tr className="tr-table">
                 <td>{character.placa}</td>
                 <td>{character.modelo}</td>
                 <td>{character.matricula}</td>
                 <td>{character.marca}</td>
                 <td>
+                  Hello
                   <i className="fas fa-edit" id="icon-edit"></i>
                 </td>
               </tr>
-            </tbody>
           ))}
+          </tbody>
         </table>
       </div>
     );

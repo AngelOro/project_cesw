@@ -11,6 +11,8 @@ class ShippingContent extends Component {
       loading: true,
       error: null,
       data: {},
+      dataBackup: {},
+      textBuscar: "",
     };
   }
 
@@ -22,6 +24,7 @@ class ShippingContent extends Component {
         this.setState({
           loading: false,
           data: vehiclesData,
+          dataBackup: vehiclesData,
         });
       })
       .catch((error) => {
@@ -31,6 +34,22 @@ class ShippingContent extends Component {
         });
       });
   }
+  
+  filter(event){
+    var text = event.target.value
+    const data = this.state.dataBackup
+    const newData = data.filter(function(item){
+        const itemData = item.placa.toUpperCase()
+        const itemDataDescp = item.marca.toUpperCase()
+        const campo = itemData+" "+itemDataDescp 
+        const textData = text.toUpperCase()
+        return campo.indexOf(textData) > -1
+    })
+    this.setState({
+        data: newData,
+        textBuscar: text,
+    })
+ }
 
   componentDidMount() {
     this._fetchData();
@@ -53,15 +72,19 @@ class ShippingContent extends Component {
       <div className="container">
         <h3 className="tittle">Envios</h3>
         <div className="row" id="row-container">
-          <div className="col-md-6">
+          <div className="col-md-10">
             <div className="form-row" id="form-input">
-              <input className="input-search" type="text" placeholder="Buscar" />
+            <input
+                className="input-search"
+                type="text"
+                placeholder="Buscar" value={this.state.text} onChange={(text) => this.filter(text)}
+              />
               <a className="nav-link" href="#">
               <i className="icon ion-md-search lead mr-2"></i>
               </a>
             </div>
           </div>
-          <div className="col-md-6 btn-new">
+          <div className="col-md-2 btn-new">
             <Link to="/RegisterShipping">
               <button
                 type="button"
@@ -75,30 +98,26 @@ class ShippingContent extends Component {
         </div>
 
         <table className="table table-striped">
-          <thead>
+          <thead className="head-table">
             <tr>
               <th scope="col">Codigo Envio</th>
-              <th scope="col">Producto</th>
               <th scope="col">Vehiculo Asignado</th>
               <th scope="col">Ciudad Origen</th>
               <th scope="col">Ciudad Destino</th>
               <th scope="col">Estado Envio</th>
             </tr>
           </thead>
+          <tbody className="body-table">
             {this.state.data.map((character) => (
-              <tbody>
-              <tr>
-                <td>{character.placa}</td>
+              <tr className="tr-table">
                 <td>{character.modelo}</td>
-                <td>{character.matricula}</td>
+                <td>{character.placa}</td>
                 <td>{character.marca}</td>
-                <td>
-                  <i className="fas fa-edit" id="icon-edit"></i>
-                </td>
-                <td></td>
+                <td>{character.marca}</td>
+                <td>En proceso</td>
               </tr>
-            </tbody>
           ))}
+          </tbody>
         </table>
         {/* <h1>Ciclo de vida </h1>
         <h2>Vehiculo Informacion</h2>
