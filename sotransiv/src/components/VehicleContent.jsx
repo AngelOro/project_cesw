@@ -28,6 +28,7 @@ class VehicleContent extends Component {
       fecha_poliza_extra: "",
     };
   }
+      
   openModal() {
     this.setState({
       visible: true,

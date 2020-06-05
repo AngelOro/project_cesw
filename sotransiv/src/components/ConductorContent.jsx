@@ -12,9 +12,9 @@ class ConductorContent extends Component {
       loading: true,
       error: null,
       data: {},
-      vehiculoBackup:[],
+      dataBackup: {},
       visible: false,
-      textBuscar: "",
+      textoBuscar: "",
     };
   }
 
@@ -38,6 +38,7 @@ class ConductorContent extends Component {
         this.setState({
           loading: false,
           data: conductorsData,
+          dataBackup: conductorsData,
         });
       })
       .catch((error) => {
@@ -52,21 +53,23 @@ class ConductorContent extends Component {
     this._fetchData();
   }
 
-  filter(event){
-    var text = event.target.value
-    const data = this.state.vehiculoBackup
-    const newData = data.filter(function(item){
-        const itemData = item.identificacion.toUpperCase()
-        const itemDataDescp = item.nombre.toUpperCase()
-        const campo = itemData+" "+itemDataDescp
-        const textData = text.toUpperCase()
-        return campo.indexOf(textData) > -1
-    })
+  filter(event) {
+    var text = event.target.value;
+    const data = this.state.dataBackup;
+    const newData = data.filter(function (item) {
+      const itemIdentificacion = item.identificacion;
+      const itemNombre = item.nombre.toUpperCase();
+      const itemTel = item.telefono;
+      const campo = itemIdentificacion + " " + itemNombre + " " + itemTel;
+      const textData = text.toUpperCase();
+      return campo.indexOf(textData) > -1;
+      
+    });
     this.setState({
-        data: newData,
-        textBuscar: text,
-    })
- }
+      data: newData,
+      textoBuscar: text,
+    });
+  }
 
   render() {
     if (this.state.loading) {
