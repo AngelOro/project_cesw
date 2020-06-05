@@ -91,7 +91,7 @@ button:hover {
 }
   
 #sidebar-container .menu {
-    width: 18rem;
+    width: 18%;
 }
 
 #content {
@@ -120,14 +120,17 @@ button:hover {
   }
 
 .navbar{
-    /* width: 115%;
-    height: 70%; */
-    width: 77%;
+    
+    /* position: absolute;
+    display: flex;
+    margin-left: 23%; */
+    margin-top: -480px;
+
+    width: 78%;
     height: 10%;
+    margin-left: 290px;
     position: absolute;
     display: block;
-    margin-left: 23%;
-    margin-top: -30%;
 }
   
 .notificaciones{
@@ -145,4 +148,6 @@ button:hover {
         border: 0;
     }
   }
-  
+
+
+ 
