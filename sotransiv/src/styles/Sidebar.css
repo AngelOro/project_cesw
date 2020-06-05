@@ -15,38 +15,6 @@
 .table{
     width: 100%;
 }
-/* .wrapper {
-    display: flex;
-    width: 100%;
-    align-items: stretch;
-}
-.wrapper {
-    display: flex;
-    align-items: stretch;
-}
-
-#sidebar {
-    min-width: 250px;
-    max-width: 250px;
-    min-height: 100vh;
-}
-
-#sidebar.active {
-    margin-left: -250px;
-}
-
-a[data-toggle="collapse"] {
-    position: relative;
-}
-
-.dropdown-toggle::after {
-    display: block;
-    position: absolute;
-    top: 50%;
-    right: 20px;
-    transform: translateY(-50%);
-} */
-
 
 body {
     overflow: hidden;
@@ -91,7 +59,7 @@ button:hover {
 }
   
 #sidebar-container .menu {
-    width: 18%;
+    width: 100%;
 }
 
 #content {
@@ -120,12 +88,7 @@ button:hover {
   }
 
 .navbar{
-    
-    /* position: absolute;
-    display: flex;
-    margin-left: 23%; */
-    margin-top: -480px;
-
+    margin-top: -385px;
     width: 78%;
     height: 10%;
     margin-left: 290px;

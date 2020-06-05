@@ -13,7 +13,8 @@ class VehicleContent extends Component {
       error: null,
       data: {},
       visible: false,
-
+      vehiculoBackup: [],
+      textBuscar: '',
       loadingForm: true,
       errorForm: null,
       placa: "",
@@ -47,6 +48,7 @@ class VehicleContent extends Component {
         this.setState({
           loading: false,
           data: vehiclesData,
+          vehiculoBackup: vehiclesData,
         });
       })
       .catch((error) => {
@@ -75,6 +77,21 @@ class VehicleContent extends Component {
       });
   }
 
+  filter(event){
+    var text = event.target.value
+    const data = this.state.vehiculoBackup
+    const newData = data.filter(function(item){
+        const itemData = item.placa.toUpperCase()
+        const itemDataDescp = item.marca.toUpperCase()
+        const campo = itemData+" "+itemDataDescp
+        const textData = text.toUpperCase()
+        return campo.indexOf(textData) > -1
+    })
+    this.setState({
+        data: newData,
+        textBuscar: text,
+    })
+ }
   componentDidMount() {
     this._fetchData();
     this._fetchdataForm();
@@ -145,7 +162,7 @@ class VehicleContent extends Component {
               <input
                 className="input-search"
                 type="text"
-                placeholder="Buscar"
+                placeholder="Buscar" value={this.state.text} onChange={(text) => this.filter(text)}
               />
               <a className="nav-link" href="#">
                 <i className="icon ion-md-search lead mr-2"></i>
@@ -173,7 +190,7 @@ class VehicleContent extends Component {
             onClickAway={() => this.closeModal()}
           >
             <div className="form-vehiculo">
-              <h3 className="form-title">Registar Vehículo</h3>
+              <h3 className="form-title">Registrar Vehículo</h3>
               <form onSubmit={this.submitHandler}>
                 <div className="form-row">
                   <div className="col-md-3">
@@ -322,6 +339,7 @@ class VehicleContent extends Component {
             </div>
           </Modal>
         </section>
+       
 
         <table className="table table-striped" id="tableContent">
           <thead>
