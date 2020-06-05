@@ -14,6 +14,8 @@ class ConductorContent extends Component {
     };
   }
 
+  
+
   _fetchData() {
     Axios.get("https://conductors.now.sh/conductors")
       .then((res) => {
@@ -62,17 +64,12 @@ class ConductorContent extends Component {
             </div>
           </div>
           <div className="col-md-6 btn-new">
-            <Link to="/RegisterConduct">
-              <button
-                type="button"
-                className="btn-3 btn-primary "
-                id="btn-search"
-              >
+              <button type="button" className="btn-3 btn-primary " id="btn-search" onClick={this.showModal}>
                 + Nuevo
               </button>
-            </Link>
           </div>
         </div>
+
 
         <table className="table table-striped">
           <thead>
