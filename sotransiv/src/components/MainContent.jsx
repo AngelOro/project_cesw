@@ -8,7 +8,8 @@ import Navbar from './Navbar';
 function Content() {
   return (
     <div className="form-row">
-      <div id="sidebar-container" className="bg-primary">
+      <div id="sidebar-container position-fixed" className="bg-primary">
+        <div className="content-sidebar">
         <div className="logo">
           <Link to="/Main">
             <img className="mb-4 logoWhite" src={logo} alt=""></img>
@@ -29,6 +30,7 @@ function Content() {
           </Link>
 
          
+        </div>
         </div>
           <Navbar />
         

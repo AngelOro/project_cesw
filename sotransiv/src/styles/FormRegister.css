@@ -8,6 +8,7 @@
 .form-title {
   text-align: center;
   padding: 40px;
+  color: black;
 }
 
 body {
@@ -27,16 +28,21 @@ body {
   justify-content: center;
   display: flex;
 }
-
-.formConduct {
-  margin-left: 350px;
+.conduct{
+  width: 80%;
 }
 
+.formConduct {
+  margin-left: 120px;
+}
+.form-vehiculo{
+  margin: 20px 80px;
+}
 #btn-conduct{
     border-color: #07a195;
     width: 100px;
     height: 50px;
     border-radius: 5px;
     background-color: #07a195;
-    margin-left: 260px;
+    margin-left: 180px;
 }

@@ -13,7 +13,8 @@ class VehicleContent extends Component {
       error: null,
       data: {},
       visible: false,
-
+      vehiculoBackup: {},
+      textBuscar: "",
       loadingForm: true,
       errorForm: null,
       placa: "",
@@ -27,6 +28,7 @@ class VehicleContent extends Component {
       fecha_poliza_extra: "",
     };
   }
+
   openModal() {
     this.setState({
       visible: true,
@@ -47,6 +49,7 @@ class VehicleContent extends Component {
         this.setState({
           loading: false,
           data: vehiclesData,
+          vehiculoBackup: vehiclesData,
         });
       })
       .catch((error) => {
@@ -75,6 +78,21 @@ class VehicleContent extends Component {
       });
   }
 
+  filter(event) {
+    var text = event.target.value;
+    const data = this.state.vehiculoBackup;
+    const newData = data.filter(function (item) {
+      const itemData = item.placa.toUpperCase();
+      const itemDataDescp = item.marca.toUpperCase();
+      const campo = itemData + " " + itemDataDescp;
+      const textData = text.toUpperCase();
+      return campo.indexOf(textData) > -1;
+    });
+    this.setState({
+      data: newData,
+      textBuscar: text,
+    });
+  }
   componentDidMount() {
     this._fetchData();
     this._fetchdataForm();
@@ -140,19 +158,21 @@ class VehicleContent extends Component {
       <div className="container">
         <h3 className="tittle">Vehículos</h3>
         <div className="row" id="row-container">
-          <div className="col-md-6">
+          <div className="col-md-10">
             <div className="form-row" id="form-input">
               <input
                 className="input-search"
                 type="text"
-                placeholder="Buscar"
+                placeholder=" Buscar"
+                value={this.state.text}
+                onChange={(text) => this.filter(text)}
               />
               <a className="nav-link" href="#">
                 <i className="icon ion-md-search lead mr-2"></i>
               </a>
             </div>
           </div>
-          <div className="col-md-6 btn-new">
+          <div className="col-md-2 btn-new">
             <button
               type="button"
               className="btn-3 btn-primary "
@@ -168,12 +188,12 @@ class VehicleContent extends Component {
           <Modal
             visible={this.state.visible}
             width="950"
-            height="700"
+            height="600"
             effect="fadeInUp"
             onClickAway={() => this.closeModal()}
           >
             <div className="form-vehiculo">
-              <h3 className="form-title">Registar Vehículo</h3>
+              <h3 className="form-title">Registrar Vehículo</h3>
               <form onSubmit={this.submitHandler}>
                 <div className="form-row">
                   <div className="col-md-3">
@@ -309,12 +329,21 @@ class VehicleContent extends Component {
                   </div>
                 </div>
                 <div className="form-row btn-action">
-                  <div className="form-group col-md-3">
+                <div className="form-group col-md-3">
                     <button
                       type="submit"
                       className="btn-primary btn-formvehicle"
                     >
                       Registrar
+                    </button>
+                  </div>
+                  <div className="form-group col-md-3">
+                    <button
+                      type="button"
+                      className="btn-primary btn-formvehicle"
+                      onClick={() => this.closeModal()}
+                    >
+                      Cancelar
                     </button>
                   </div>
                 </div>
@@ -324,28 +353,29 @@ class VehicleContent extends Component {
         </section>
 
         <table className="table table-striped" id="tableContent">
-          <thead>
+          <thead className="head-table">
             <tr>
               <th scope="col">Placa</th>
               <th scope="col">Modelo</th>
               <th scope="col">Matricula</th>
-              <th scope="col">Marca</th>
-              <th scope="col">Acciones</th>
+              <th scope="col"> Marca</th>
+              <th scope="col"> Acciones</th>
             </tr>
           </thead>
-          {this.state.data.map((character) => (
-            <tbody>
-              <tr>
+          <tbody className="body-table">
+            {this.state.data.map((character) => (
+              <tr className="tr-table">
                 <td>{character.placa}</td>
                 <td>{character.modelo}</td>
                 <td>{character.matricula}</td>
                 <td>{character.marca}</td>
                 <td>
+                  Hello
                   <i className="fas fa-edit" id="icon-edit"></i>
                 </td>
               </tr>
-            </tbody>
-          ))}
+            ))}
+          </tbody>
         </table>
       </div>
     );
