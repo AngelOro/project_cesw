@@ -12,7 +12,7 @@ class ShippingContent extends Component {
       loading: true,
       error: null,
       data: {},
-      visible: false
+      visible: false,
       dataBackup: {},
       textBuscar: "",
 
@@ -101,7 +101,7 @@ class ShippingContent extends Component {
             </div>
           </div>
 
-          <div className="col-md-6 btn-new">
+          <div className="col-md-2 btn-new">
 
             <button
               type="button"
@@ -242,6 +242,9 @@ class ShippingContent extends Component {
               <th scope="col">Estado Envio</th>
             </tr>
           </thead>
+          <tbody className="body-table">
+            {this.state.data.map((character) => (
+              <tr className="tr-table">
 
                 <td>{character.modelo}</td>
                 <td>{character.placa}</td>
