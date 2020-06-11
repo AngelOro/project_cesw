@@ -14,7 +14,10 @@
     "express": "^4.17.1",
     "http": "0.0.1-security",
     "jquery": "^3.5.1",
+    "morgan": "^1.10.0",
     "mysql": "^2.18.1",
+    "nodemon": "^2.0.4",
+    "popper.js": "^1.16.1",
     "react": "^16.13.1",
     "react-awesome-modal": "^2.0.5",
     "react-dom": "^16.13.1",
@@ -26,7 +29,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "dev": "nodemon src/app.js"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -43,5 +47,4 @@
       "last 1 safari version"
     ]
   }
- 
 }
