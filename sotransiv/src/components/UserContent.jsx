@@ -7,28 +7,30 @@ class userContent extends Component {
     constructor(props) {
         super(props);
         this.state = {
-          listUser: [],
+          error: null,
+          data: [],
           visible: false,
         };
       }
 
      
-    
-      componentDidMount() {
-        axios.get('https://localhost:3001/user/listUser')
-        .then(res => {
-            if(res.data.success){
-                const data = res.data.data
-                console.log(data);
-                this.setState({listUser: data})
-            }
-            else{
-                alert("Sorry")
-            }
+      _fetchData(){
+        axios.get('http://192.168.0.20:3001/user/listUser')
+        .then((res) => {
+          const userData = res.data;
+          console.log(userData);
+          this.setState({
+            data: userData,
+          });
         })
-        .catch(error => {
-            alert("Error" + error)
+        .catch((error) => {
+          this.setState({
+            error: isNaN,
+          });
         });
+      }
+      componentDidMount() {
+        this._fetchData();
       }
 
   render() {
@@ -42,27 +44,19 @@ class userContent extends Component {
             </tr>
           </thead>
           <tbody className="body-table">
-          <tr className="tr-table">
-              <td></td>
-              <td></td>
-            </tr>
-            {this.loadFillData()}
+          {this.state.data.map((user) => (
+              <tr className="tr-table">
+                <td>{user.usuario}</td>
+                <td>{user.clave}</td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>
     );
   }
 
-  loadFillData(){
-      return this.state.listUser.map((data)=>{
-        return(
-            <tr className="tr-table">
-              <td>{data.usuario}</td>
-              <td>{data.clave}</td>
-            </tr>
-        )
-      })
-  }
+ 
 }
 
 export default userContent;
