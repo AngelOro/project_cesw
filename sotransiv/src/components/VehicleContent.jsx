@@ -377,6 +377,7 @@ class VehicleContent extends Component {
             ))}
           </tbody>
         </table>
+      
       </div>
     );
   }
