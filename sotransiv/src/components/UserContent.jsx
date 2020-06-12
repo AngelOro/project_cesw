@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import "../styles/VehicleContent.css";
-import { link, Link } from "react-router-dom";
 import axios from "axios";
 
 class userContent extends Component {
@@ -15,7 +14,7 @@ class userContent extends Component {
      
     
       componentDidMount() {
-        axios.get('https://localhost:3001/user/listUser')
+        axios.get('http://192.168.56.1:3001/user/listUser')
         .then(res => {
             if(res.data.success){
                 const data = res.data.data

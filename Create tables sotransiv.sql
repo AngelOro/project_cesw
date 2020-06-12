@@ -113,14 +113,17 @@ create table tbl_detalle_producto(
 	constraint fk_id_envio foreign key (id_envio) references tbl_envios (id_envio)
 );
 
+drop table tbl_usuarios;
 CREATE TABLE tbl_usuarios (
-  id_usuarios      int,
+  id_usuarios      int(11)     unsigned NOT NULL AUTO_INCREMENT,
   usuario   varchar(30)  not null,
   clave    varchar(50)  not null,
   constraint pk_usuarios PRIMARY KEY (id_usuarios)
 );
 
+INSERT INTO tbl_usuarios (usuario, clave) 
+     VALUES ('edwar', '12345'),
+			('esteban', '1234'), 
+            ('angelica',  '123456');
 
-
-
-
+select * from  tbl_usuarios;
