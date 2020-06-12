@@ -111,8 +111,14 @@ create table tbl_detalle_producto(
 	constraint pk_id_detalle primary key (id_detalle),
 	constraint fk_id_producto foreign key (id_producto) references tbl_productos(id_producto),
 	constraint fk_id_envio foreign key (id_envio) references tbl_envios (id_envio)
-)
+);
 
+CREATE TABLE tbl_usuarios (
+  id_usuarios      int,
+  usuario   varchar(30)  not null,
+  clave    varchar(50)  not null,
+  constraint pk_usuarios PRIMARY KEY (id_usuarios)
+);
 
 
 
