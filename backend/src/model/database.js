@@ -2,7 +2,7 @@ var Sequelize = require('sequelize');
 
 const sequelize = new Sequelize(
     'sotransiv',
-    'sotransiv',
+    'root',
     '1234',
     {
       host: 'localhost',

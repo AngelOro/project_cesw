@@ -14,14 +14,18 @@ class userContent extends Component {
       }
 
      
-      _fetchData(){
-        axios.get('http://192.168.0.20:3001/user/listUser')
-        .then((res) => {
-          const userData = res.data;
-          console.log(userData);
-          this.setState({
-            data: userData,
-          });
+
+      componentDidMount() {
+        axios.get('http://192.168.1.73:3001/user/listUser')
+        .then(res => {
+            if(res.data.success){
+                const data = res.data.data
+                console.log(data);
+                this.setState({listUser: data})
+            }
+            else{
+                alert("Sorry")
+            }
         })
         .catch((error) => {
           this.setState({
