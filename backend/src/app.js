@@ -13,9 +13,10 @@ app.listen(3001, function () {
   console.log('CORS-enabled web server listening on port 80')
 })
 
-const routersVehicles = require('./routes/index.routes');
+const routersVehicles = require('./routes/vehicle.routes');
 const routersUsers = require('./routes/user.routes')
 const routersConduct = require('./routes/conduct.routes')
+
 //Routes
 app.use('/Vehicle', routersVehicles);
 app.use('/user', routersUsers);
@@ -23,7 +24,7 @@ app.use('/Conduct', routersConduct);
 
 
 //Settings, configuración del servidor
-app.set('port', process.env.PORT || 3000) //Se asigna el puerto
+app.set('port', process.env.PORT || 3001) //Se asigna el puerto 
 //Middlewares
 app.use(express.json());
 
@@ -36,15 +37,8 @@ app.use((req, res, next) => {
   next();
 });
 
-//Errors
-// app.use((err, req, res, next) => {
-//   res.send({ error: err.message })
-// })
 
 app.listen(app.get('port'), () => {
-  // console.log(`Server on port ${app.get('port')}`)
   console.log("Iniciando servidor node")
 })
 
-
-/////////////////////////////////////////////////////////////////

@@ -3,32 +3,28 @@ import "../styles/VehicleContent.css";
 import axios from "axios";
 
 class userContent extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-          listUser: [],
-          visible: false,
-        };
-      }
-
-     
-    
-      componentDidMount() {
-        axios.get('http://192.168.56.1:3001/user/listUser')
-        .then(res => {
-            if(res.data.success){
-                const data = res.data.data
-                console.log(data);
-                this.setState({listUser: data})
-            }
-            else{
-                alert("Sorry")
-            }
-        })
-        .catch(error => {
-            alert("Error" + error)
-        });
-      }
+  constructor(props) {
+    super(props);
+    this.state = {
+      listUser: [],
+      visible: false,
+    };
+  }
+  componentDidMount() {
+    axios.get("http://192.168.0.20:3001/user/listUser")
+      .then((res) => {
+        if (res.data.success) {
+          const data = res.data.data;
+          console.log(data);
+          this.setState({ listUser: data });
+        } else {
+          alert("Sorry");
+        }
+      })
+      .catch((error) => {
+        alert("Error" + error);
+      });
+  }
 
   render() {
     return (
@@ -41,7 +37,7 @@ class userContent extends Component {
             </tr>
           </thead>
           <tbody className="body-table">
-          <tr className="tr-table">
+            <tr className="tr-table">
               <td></td>
               <td></td>
             </tr>
@@ -52,15 +48,15 @@ class userContent extends Component {
     );
   }
 
-  loadFillData(){
-      return this.state.listUser.map((data)=>{
-        return(
-            <tr className="tr-table">
-              <td>{data.usuario}</td>
-              <td>{data.clave}</td>
-            </tr>
-        )
-      })
+  loadFillData() {
+    return this.state.listUser.map((data) => {
+      return (
+        <tr className="tr-table">
+          <td>{data.usuario}</td>
+          <td>{data.clave}</td>
+        </tr>
+      );
+    });
   }
 }
 

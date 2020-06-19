@@ -25,7 +25,7 @@ controllers.testdata = async ( req, res) => {
       return error;
     }); 
   
-    res.json({success : true, data : data});
+    res.json({success: true, data: data});
   
   }
 
