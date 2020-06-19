@@ -11,7 +11,7 @@ class VehicleContent extends Component {
     this.state = {
       loading: true,
       error: null,
-      data: {},
+      vehicleData: [],
       visible: false,
       vehiculoBackup: {},
       textBuscar: "",
@@ -42,22 +42,42 @@ class VehicleContent extends Component {
   }
 
   _fetchData() {
-    Axios.get("https://api-sotransiv-8xli76wpt.now.sh/vehicles")
+    Axios.get("http://192.168.0.20:3001/Vehicle/")
       .then((res) => {
-        const vehiclesData = res.data;
-        console.log(vehiclesData);
-        this.setState({
-          loading: false,
-          data: vehiclesData,
-          vehiculoBackup: vehiclesData,
-        });
+        if (res.data.success) {
+          const data = res.data.data;
+          console.log(data);
+          this.setState({
+            loading: false,
+            vehicleData: data,
+            vehiculoBackup: data,
+          });
+        } else {
+          alert("Sorry");
+        }
       })
       .catch((error) => {
+        alert("Error" + error);
         this.setState({
           loading: false,
           error: isNaN,
         });
       });
+    // .then((res) => {
+    //   const vehiclesData = res.data;
+    //   console.log(vehiclesData);
+    //   this.setState({
+    //     loading: false,
+    //     data: vehiclesData,
+    //     vehiculoBackup: vehiclesData,
+    //   });
+    // })
+    // .catch((error) => {
+    //   this.setState({
+    //     loading: false,
+    //     error: isNaN,
+    //   });
+    // });
   }
 
   _fetchdataForm() {
@@ -266,8 +286,8 @@ class VehicleContent extends Component {
                         value={tipo_vehiculo}
                         onChange={this.changeHandler}
                       >
-                        {this.state.data.map((character) => (
-                          <option>{character.tipo_vehiculo}</option>
+                        {this.state.vehicleData.map((character) => (
+                          <option>{character.id_tipo}</option>
                         ))}
                       </select>
                     </div>
@@ -329,7 +349,7 @@ class VehicleContent extends Component {
                   </div>
                 </div>
                 <div className="form-row btn-action">
-                <div className="form-group col-md-3">
+                  <div className="form-group col-md-3">
                     <button
                       type="submit"
                       className="btn-primary btn-formvehicle"
@@ -363,21 +383,20 @@ class VehicleContent extends Component {
             </tr>
           </thead>
           <tbody className="body-table">
-            {this.state.data.map((character) => (
+            {this.state.vehicleData.map((character) => (
               <tr className="tr-table">
                 <td>{character.placa}</td>
                 <td>{character.modelo}</td>
                 <td>{character.matricula}</td>
-                <td>{character.marca}</td>
+                <td>{character.capacidad}</td>
                 <td>
-                  Hello
+                  Editar
                   <i className="fas fa-edit" id="icon-edit"></i>
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
-      
       </div>
     );
   }

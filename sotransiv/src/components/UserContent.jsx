@@ -4,6 +4,7 @@ import { link, Link } from "react-router-dom";
 import axios from "axios";
 
 class userContent extends Component {
+
     constructor(props) {
         super(props);
         this.state = {
@@ -31,6 +32,7 @@ class userContent extends Component {
         });
       }
 
+
   render() {
     return (
       <div>
@@ -42,7 +44,7 @@ class userContent extends Component {
             </tr>
           </thead>
           <tbody className="body-table">
-          <tr className="tr-table">
+            <tr className="tr-table">
               <td></td>
               <td></td>
             </tr>
@@ -53,15 +55,15 @@ class userContent extends Component {
     );
   }
 
-  loadFillData(){
-      return this.state.listUser.map((data)=>{
-        return(
-            <tr className="tr-table">
-              <td>{data.usuario}</td>
-              <td>{data.clave}</td>
-            </tr>
-        )
-      })
+  loadFillData() {
+    return this.state.listUser.map((data) => {
+      return (
+        <tr className="tr-table">
+          <td>{data.usuario}</td>
+          <td>{data.clave}</td>
+        </tr>
+      );
+    });
   }
 }
 

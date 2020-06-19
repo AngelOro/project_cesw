@@ -1,9 +1,9 @@
 var Sequelize = require('sequelize');
 
 const sequelize = new Sequelize(
-    'sotransiv',
-    'root',
-    '1234',
+    'sotransiv', //database
+    'sotransiv', //user
+    '1234',      //pass
     {
       host: 'localhost',
       dialect: 'mysql'
