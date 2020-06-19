@@ -6,16 +6,23 @@ const controller = {}
 controller.getVehicles = (req, res, next) => {
     conn.query('SELECT * FROM tbl_vehiculos', (err, rows) => {
       if(err) next(new Error(err))
-      else res.send("Obteniendo vehículos")
-      //res.render('index', { vehiclesData: rows })
+      else res.json({success: true, data: rows})
     })
-    // const data = {
-    //   placa: "UTK-786",
-    //   marca: "International"
-    // }
-    // res.json(data);
 }
 
+// controllers.list = async (req, res) => {
+
+//   const data = await Usuarios.findAll()
+//   .then(function(data){
+//     return data;
+//   })
+//   .catch(error => {
+//     return error;
+//   }); 
+
+//   res.json({success: true, data: data});
+
+// }
 
   module.exports = controller
 
