@@ -1,15 +1,3 @@
-CREATE TABLE `users` (
-  `id`       int(11)     unsigned NOT NULL AUTO_INCREMENT,
-  `usuario`     varchar(30) DEFAULT '',
-  `clave`    varchar(50) DEFAULT '',
-  PRIMARY KEY (`id`)
-);
-
-INSERT INTO users (usuario, clave) 
-     VALUES ('Richard Hendricks', 'ebola23'), 
-            ('Bertram Gilfoyle',  'giman');
-
-
 create table tbl_marcas_vehiculos(
 id_marca integer not null,
 descripcion varchar(50) not null,
@@ -126,7 +114,6 @@ create table tbl_detalle_producto(
 	constraint fk_id_envio foreign key (id_envio) references tbl_envios (id_envio)
 );
 
-drop table tbl_usuarios;
 CREATE TABLE tbl_usuarios (
   id_usuarios      int(11)     unsigned NOT NULL AUTO_INCREMENT,
   usuario   varchar(30)  not null,

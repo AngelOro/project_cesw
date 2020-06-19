@@ -1,7 +1,7 @@
 var Sequelize = require('sequelize');
 
 const sequelize = new Sequelize(
-    'sotransiv',
+    'sotraniv',
     'sotransiv',
     '1234',
     {

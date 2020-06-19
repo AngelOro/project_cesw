@@ -4,7 +4,7 @@ const controllers = {};
 
 controllers.testdata = async ( req, res) => {
   
-    const response = await sequelize.sync().then(function() {
+  const response = await sequelize.sync().then(function() {
        const data =  Usuarios.findAll()
        return data;
     })
