@@ -1,0 +1,32 @@
+var Shipping = require('../model/Shipping');
+var sequelize = require('../model/database');
+const controllers = {};
+
+controllers.testdata = async ( req, res) => {
+  
+    const response = await sequelize.sync().then(function() {
+       const data =  Shipping.findAll()
+       return data;
+    })
+    .catch(err => {
+      return err;
+    });
+    res.json(response)
+  
+  }
+  
+  controllers.list = async (req, res) => {
+
+    const data = await Shipping.findAll()
+    .then(function(data){
+      return data;
+    })
+    .catch(error => {
+      return error;
+    }); 
+  
+    res.json({success : true, data : data});
+  
+  }
+
+  module.exports = controllers

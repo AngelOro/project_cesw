@@ -1,14 +1,14 @@
-CREATE TABLE `users` (
-  `id`       int(11)     unsigned NOT NULL AUTO_INCREMENT,
-  `usuario`     varchar(30) DEFAULT '',
-  `clave`    varchar(50) DEFAULT '',
-  PRIMARY KEY (`id`)
+CREATE TABLE tbl_usuarios (
+  id_usuarios      int(11)     unsigned NOT NULL AUTO_INCREMENT,
+  usuario   varchar(30)  not null,
+  clave    varchar(50)  not null,
+  constraint pk_usuarios PRIMARY KEY (id_usuarios)
 );
 
-INSERT INTO users (usuario, clave) 
-     VALUES ('Richard Hendricks', 'ebola23'), 
-            ('Bertram Gilfoyle',  'giman');
-
+INSERT INTO tbl_usuarios (usuario, clave) 
+     VALUES ('edwar', '12345'),
+			('esteban', '1234'), 
+            ('angelica',  '123456');
 
 create table tbl_marcas_vehiculos(
 id_marca integer not null,
