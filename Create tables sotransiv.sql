@@ -1,3 +1,4 @@
+
 CREATE TABLE tbl_usuarios (
   id_usuarios      int(11)     unsigned NOT NULL AUTO_INCREMENT,
   usuario   varchar(30)  not null,
@@ -9,6 +10,7 @@ INSERT INTO tbl_usuarios (usuario, clave)
      VALUES ('edwar', '12345'),
 			('esteban', '1234'), 
             ('angelica',  '123456');
+
 
 create table tbl_marcas_vehiculos(
 id_marca integer not null,
@@ -115,18 +117,27 @@ create table tbl_envios(
 );
 
 create table tbl_detalle_producto(
-id_detalle integer,
-id_producto integer,
-id_envio integer,
-cantidad integer not null,
-numero_lote varchar(20) not null,
-constraint pk_id_detalle primary key (id_detalle),
-constraint fk_id_producto foreign key (id_producto) references tbl_productos(id_producto),
-constraint fk_id_envio foreign key (id_envio) references tbl_envios (id_envio)
-)
 
+	id_detalle integer,
+	id_producto integer,
+	id_envio integer,
+	cantidad integer not null,
+	numero_lote varchar(20) not null,
+	constraint pk_id_detalle primary key (id_detalle),
+	constraint fk_id_producto foreign key (id_producto) references tbl_productos(id_producto),
+	constraint fk_id_envio foreign key (id_envio) references tbl_envios (id_envio)
+);
 
+CREATE TABLE tbl_usuarios (
+  id_usuarios      int(11)     unsigned NOT NULL AUTO_INCREMENT,
+  usuario   varchar(30)  not null,
+  clave    varchar(50)  not null,
+  constraint pk_usuarios PRIMARY KEY (id_usuarios)
+);
 
+INSERT INTO tbl_usuarios (usuario, clave) 
+     VALUES ('edwar', '12345'),
+			('esteban', '1234'), 
+            ('angelica',  '123456');
 
-
-
+select * from  tbl_usuarios;

@@ -12,24 +12,26 @@ app.get('/user', function (req, res, next) {
 
 app.listen(3000, function () {
   console.log('CORS-enabled web server listening on port 3000')
-})
 
+})
 
 
 const routersShipping = require('./routes/shipping.routes');
 const routersVehicles = require('./routes/vehicle.routes');
 const routersUsers = require('./routes/user.routes')
+const routersConduct = require('./routes/conduct.routes')
 
 
 //Routes
 app.use('/Vehicle', routersVehicles);
 app.use('/user', routersUsers);
 app.use('/Shipping', routersShipping);
+app.use('/Conduct', routersConduct);
+
 
 
 //Settings, configuración del servidor
-app.set('port', process.env.PORT || 3001) //Se asigna el puerto
-
+app.set('port', process.env.PORT || 3001) //Se asigna el puerto 
 //Middlewares
 app.use(express.json());
 

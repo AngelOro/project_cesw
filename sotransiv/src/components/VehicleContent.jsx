@@ -287,7 +287,7 @@ class VehicleContent extends Component {
                         onChange={this.changeHandler}
                       >
                         {this.state.vehicleData.map((character) => (
-                          <option>{character.id_tipo}</option>
+                          <option>{character.tipoVehiculo}</option>
                         ))}
                       </select>
                     </div>
@@ -388,7 +388,7 @@ class VehicleContent extends Component {
                 <td>{character.placa}</td>
                 <td>{character.modelo}</td>
                 <td>{character.matricula}</td>
-                <td>{character.capacidad}</td>
+                <td>{character.marca}</td>
                 <td>
                   Editar
                   <i className="fas fa-edit" id="icon-edit"></i>

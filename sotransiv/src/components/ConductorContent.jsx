@@ -31,17 +31,22 @@ class ConductorContent extends Component {
   }
 
   _fetchData() {
-    Axios.get("https://conductors.now.sh/conductors")
+    Axios.get("http://192.168.56.1:3001/Conduct/")
       .then((res) => {
-        const conductorsData = res.data;
-        console.log(conductorsData);
-        this.setState({
-          loading: false,
-          data: conductorsData,
-          dataBackup: conductorsData,
-        });
+        if (res.data.success) {
+          const data = res.data.data;
+          console.log(data);
+          this.setState({
+            loading: false,
+            data: data,
+            dataBackup: data,
+          });
+        } else {
+          alert("Sorry");
+        }
       })
       .catch((error) => {
+        alert("Error" + error);
         this.setState({
           loading: false,
           error: isNaN,
@@ -194,15 +199,6 @@ class ConductorContent extends Component {
                       </button>
                     </div>
                   </div>
-                  {/* <div className="form-group col-md-4">
-                    <button
-                      type="submit"
-                      className="btn-primary btn-formConduct"
-                      id="btn-conduct"
-                    >
-                      Registrar conductor
-                    </button>
-                  </div> */}
                 </form>
               </div>
             </div>
@@ -213,34 +209,33 @@ class ConductorContent extends Component {
             <tr>
               <th scope="col">Identificacion</th>
               <th scope="col">Nombre</th>
+              <th scope="col">Primer apellido</th>
+              <th scope="col">Segundo apellido</th>
               <th scope="col">Telefono</th>
-              <th scope="col">Vehiculo Asignado</th>
               <th scope="col">Acciones</th>
             </tr>
           </thead>
           <tbody className="body-table">
-            {this.state.data.map((character) => (
-              <tr className="tr-table">
-                <td>{character.identificacion}</td>
-                <td>
-                  {character.nombre +
-                    " " +
-                    character.primer_apellido +
-                    " " +
-                    character.segundo_apellido}
-                </td>
-                <td>{character.telefono}</td>
-                <td></td>
-                <td>
-                  <i className="fas fa-edit" id="icon-edit"></i>
-                </td>
-              </tr>
-            ))}
+              {this.loadFillData()}
           </tbody>
         </table>
       </div>
     );
   }
+  loadFillData(){
+    return this.state.data.map((data)=>{
+      return(
+          <tr className="tr-table">
+            <td>{data.identificacion}</td>
+            <td>{data.nombre}</td>
+            <td>{data.primer_apellido}</td>
+            <td>{data.segundo_apellido}</td>
+            <td>{data.telefono_contacto}</td>
+            <td>editar</td>
+          </tr>
+      )
+    })
+}
 }
 
 export default ConductorContent;
