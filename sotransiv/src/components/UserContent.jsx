@@ -15,7 +15,7 @@ class userContent extends Component {
      
     
       componentDidMount() {
-        axios.get('http://192.168.1.6:3001/user/listUser')
+        axios.get('http://192.168.1.2:3001/user/listUser')
         .then(res => {
             if(res.data.success){
                 const data = res.data.data
