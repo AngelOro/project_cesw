@@ -216,26 +216,24 @@ class ConductorContent extends Component {
             </tr>
           </thead>
           <tbody className="body-table">
-              {this.loadFillData()}
+            {this.state.data.map((data) => (
+              <tr className="tr-table">
+                <td>{data.identificacion}</td>
+                <td>{data.nombre}</td>
+                <td>{data.primer_apellido}</td>
+                <td>{data.segundo_apellido}</td>
+                <td>{data.telefono_contacto}</td>
+                <td>
+                  Editar
+                  <i className="fas fa-edit" id="icon-edit"></i>
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>
     );
   }
-  loadFillData(){
-    return this.state.data.map((data)=>{
-      return(
-          <tr className="tr-table">
-            <td>{data.identificacion}</td>
-            <td>{data.nombre}</td>
-            <td>{data.primer_apellido}</td>
-            <td>{data.segundo_apellido}</td>
-            <td>{data.telefono_contacto}</td>
-            <td>editar</td>
-          </tr>
-      )
-    })
-}
 }
 
 export default ConductorContent;

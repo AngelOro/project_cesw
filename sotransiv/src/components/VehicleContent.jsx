@@ -42,7 +42,7 @@ class VehicleContent extends Component {
   }
 
   _fetchData() {
-    Axios.get("http://192.168.0.20:3001/Vehicle/")
+    Axios.get("http://192.168.56.1:3001/Vehicle/")
       .then((res) => {
         if (res.data.success) {
           const data = res.data.data;
@@ -63,21 +63,7 @@ class VehicleContent extends Component {
           error: isNaN,
         });
       });
-    // .then((res) => {
-    //   const vehiclesData = res.data;
-    //   console.log(vehiclesData);
-    //   this.setState({
-    //     loading: false,
-    //     data: vehiclesData,
-    //     vehiculoBackup: vehiclesData,
-    //   });
-    // })
-    // .catch((error) => {
-    //   this.setState({
-    //     loading: false,
-    //     error: isNaN,
-    //   });
-    // });
+   
   }
 
   _fetchdataForm() {
@@ -109,7 +95,7 @@ class VehicleContent extends Component {
       return campo.indexOf(textData) > -1;
     });
     this.setState({
-      data: newData,
+      vehicleData: newData,
       textBuscar: text,
     });
   }
@@ -125,7 +111,7 @@ class VehicleContent extends Component {
   submitHandler = (e) => {
     e.preventDefault();
     console.log(this.state);
-    Axios.post("https://api-sotransiv-8xli76wpt.now.sh/vehicles", this.state)
+    Axios.post("https://192.168.56.1:3001/Vehicle", this.state)
       .then((response) => {
         console.log(response);
       })
@@ -286,8 +272,8 @@ class VehicleContent extends Component {
                         value={tipo_vehiculo}
                         onChange={this.changeHandler}
                       >
-                        {this.state.vehicleData.map((character) => (
-                          <option>{character.tipoVehiculo}</option>
+                        {this.state.vehicleData.map((vehicle) => (
+                          <option>{vehicle.tipoVehiculo}</option>
                         ))}
                       </select>
                     </div>

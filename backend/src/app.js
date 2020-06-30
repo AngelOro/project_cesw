@@ -24,7 +24,7 @@ app.use('/Conduct', routersConduct);
 
 
 //Settings, configuración del servidor
-app.set('port', process.env.PORT || 3001) //Se asigna el puerto 
+app.set('port', process.env.PORT || 3000) //Se asigna el puerto 
 //Middlewares
 app.use(express.json());
 
