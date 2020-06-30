@@ -1,17 +1,10 @@
-#btn-search {
+/* #btn-search {
     background-color: #07a195;
     width: 100px;
     height: 35px;
   }
   
-  /* .table {
-    width: 100%;
-   
-    display: block;
-  } */
-  /* .head-table , .body-table{
-    display: block;
-  } */
+ 
   .table{
     position: static;
   }
@@ -32,7 +25,7 @@
     display: inline-grid;
   }
   .table th{
-    /* padding: 0.75rem; */
+ 
     vertical-align: top;
     border-top: 1px solid #dee2e6;
     
@@ -91,4 +84,4 @@
     text-align: center;
     color: black;
   }
-  
+   */

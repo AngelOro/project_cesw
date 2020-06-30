@@ -63,21 +63,7 @@ class VehicleContent extends Component {
           error: isNaN,
         });
       });
-    // .then((res) => {
-    //   const vehiclesData = res.data;
-    //   console.log(vehiclesData);
-    //   this.setState({
-    //     loading: false,
-    //     data: vehiclesData,
-    //     vehiculoBackup: vehiclesData,
-    //   });
-    // })
-    // .catch((error) => {
-    //   this.setState({
-    //     loading: false,
-    //     error: isNaN,
-    //   });
-    // });
+   
   }
 
   _fetchdataForm() {
@@ -109,7 +95,7 @@ class VehicleContent extends Component {
       return campo.indexOf(textData) > -1;
     });
     this.setState({
-      data: newData,
+      vehicleData: newData,
       textBuscar: text,
     });
   }
@@ -286,8 +272,8 @@ class VehicleContent extends Component {
                         value={tipo_vehiculo}
                         onChange={this.changeHandler}
                       >
-                        {this.state.vehicleData.map((character) => (
-                          <option>{character.tipoVehiculo}</option>
+                        {this.state.vehicleData.map((vehicle) => (
+                          <option>{vehicle.tipoVehiculo}</option>
                         ))}
                       </select>
                     </div>

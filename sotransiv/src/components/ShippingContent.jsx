@@ -44,12 +44,12 @@ class ShippingContent extends Component {
     Axios.get("http://192.168.1.2:3001/Shipping/")
       .then((res) => {
         if (res.data.success) {
-          const shippingData = res.data.data;
-          console.log(shippingData);
+          const data = res.data.data;
+          console.log(data);
           this.setState({
             loading: false,
-            shippingData: shippingData,
-            shippingBackup: shippingData,
+            shippingData: data,
+            shippingBackup: data,
           });
         } else {
           alert("sorry");
@@ -68,7 +68,7 @@ class ShippingContent extends Component {
     var text = event.target.value;
     const data = this.state.shippingBackup;
     const newData = data.filter(function (item) {
-      const itemData = item.ciudad_origen.toUpperCase();
+      const itemData = item.id_envio;
       const itemDataDescp = item.ciudad_destino.toUpperCase();
       const campo = itemData + " " + itemDataDescp;
       const textData = text.toUpperCase();
@@ -114,7 +114,9 @@ class ShippingContent extends Component {
               <input
                 className="input-search"
                 type="text"
-                placeholder="Buscar" value={this.state.text} onChange={(text) => this.filter(text)}
+                placeholder="Buscar" 
+                value={this.state.text} 
+                onChange={(text) => this.filter(text)}
               />
               <a className="nav-link" href="#">
                 <i className="icon ion-md-search lead mr-2"></i>
