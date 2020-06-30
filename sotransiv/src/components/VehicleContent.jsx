@@ -42,6 +42,7 @@ class VehicleContent extends Component {
   }
 
   _fetchData() {
+
     Axios.get("http://192.168.0.20:3000/Vehicle/")
       .then((res) => {
         if (res.data.success) {

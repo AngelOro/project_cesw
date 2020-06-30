@@ -1,3 +1,17 @@
+
+CREATE TABLE tbl_usuarios (
+  id_usuarios      int(11)     unsigned NOT NULL AUTO_INCREMENT,
+  usuario   varchar(30)  not null,
+  clave    varchar(50)  not null,
+  constraint pk_usuarios PRIMARY KEY (id_usuarios)
+);
+
+INSERT INTO tbl_usuarios (usuario, clave) 
+     VALUES ('edwar', '12345'),
+			('esteban', '1234'), 
+            ('angelica',  '123456');
+
+
 create table tbl_marcas_vehiculos(
 id_marca integer not null,
 descripcion varchar(50) not null,

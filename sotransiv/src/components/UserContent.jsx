@@ -3,6 +3,7 @@ import "../styles/VehicleContent.css";
 import axios from "axios";
 
 class userContent extends Component {
+
   constructor(props) {
     super(props);
     this.state = {
@@ -25,6 +26,7 @@ class userContent extends Component {
         alert("Error" + error);
       });
   }
+
 
   render() {
     return (
