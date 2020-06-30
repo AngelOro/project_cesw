@@ -13,19 +13,6 @@ controller.getVehicles = (req, res, next) => {
     })
 }
 
-// controllers.list = async (req, res) => {
-
-//   const data = await Usuarios.findAll()
-//   .then(function(data){
-//     return data;
-//   })
-//   .catch(error => {
-//     return error;
-//   }); 
-
-//   res.json({success: true, data: data});
-
-// }
 
   module.exports = controller
 
