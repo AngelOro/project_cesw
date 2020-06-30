@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-//import "../styles/VehicleContent.css";
+import "../styles/ShippingContent.css";
 import { link, Link } from "react-router-dom";
 import Axios from "axios";
 import Modal from 'react-awesome-modal';
@@ -11,10 +11,18 @@ class ShippingContent extends Component {
     this.state = {
       loading: true,
       error: null,
-      data: {},
+      shippingData: [],
       visible: false,
-      dataBackup: {},
+      shippingBackup: {},
       textBuscar: "",
+      id_envio: "",
+      fecha_inicio: "",
+      fecha_fin: "",
+      placa: "",
+      valor_envio: "",
+      ciudad_origen: "",
+      ciudad_destino: "",
+      estado: "",
 
     };
   }
@@ -33,15 +41,19 @@ class ShippingContent extends Component {
   }
 
   _fetchData() {
-    Axios.get("https://api-sotransiv-8xli76wpt.now.sh/vehicles")
+    Axios.get("http://192.168.1.2:3001/Shipping/")
       .then((res) => {
-        const vehiclesData = res.data;
-        console.log(vehiclesData);
-        this.setState({
-          loading: false,
-          data: vehiclesData,
-          dataBackup: vehiclesData,
-        });
+        if (res.data.success) {
+          const data = res.data.data;
+          console.log(data);
+          this.setState({
+            loading: false,
+            shippingData: data,
+            shippingBackup: data,
+          });
+        } else {
+          alert("sorry");
+        }
       })
       .catch((error) => {
         this.setState({
@@ -50,28 +62,37 @@ class ShippingContent extends Component {
         });
       });
   }
-  
-  filter(event){
-    var text = event.target.value
-    const data = this.state.dataBackup
-    const newData = data.filter(function(item){
-        const itemData = item.placa.toUpperCase()
-        const itemDataDescp = item.marca.toUpperCase()
-        const campo = itemData+" "+itemDataDescp 
-        const textData = text.toUpperCase()
-        return campo.indexOf(textData) > -1
-    })
+
+
+  filter(event) {
+    var text = event.target.value;
+    const data = this.state.shippingBackup;
+    const newData = data.filter(function (item) {
+      const itemData = item.id_envio;
+      const itemDataDescp = item.ciudad_destino.toUpperCase();
+      const campo = itemData + " " + itemDataDescp;
+      const textData = text.toUpperCase();
+      return campo.indexOf(textData) > -1;
+    });
     this.setState({
-        data: newData,
-        textBuscar: text,
-    })
- }
+      shippingData: newData,
+      textBuscar: text,
+    });
+  }
 
   componentDidMount() {
     this._fetchData();
   }
 
   render() {
+    const {
+      id_envio,
+      fecha_inicio,
+      fecha_fin,
+      id_vehiculo,
+      id_origen,
+    } = this.state;
+
     if (this.state.loading) {
       return (
         <div className="App">
@@ -90,10 +111,12 @@ class ShippingContent extends Component {
         <div className="row" id="row-container">
           <div className="col-md-10">
             <div className="form-row" id="form-input">
-            <input
+              <input
                 className="input-search"
                 type="text"
-                placeholder="Buscar" value={this.state.text} onChange={(text) => this.filter(text)}
+                placeholder="Buscar" 
+                value={this.state.text} 
+                onChange={(text) => this.filter(text)}
               />
               <a className="nav-link" href="#">
                 <i className="icon ion-md-search lead mr-2"></i>
@@ -227,15 +250,17 @@ class ShippingContent extends Component {
                   <button type="submit" class="btn btn-primary" href="javascript:void(0);" onClick={() => this.closeModal()}>Cerrar</button>
                 </form>
               </div>
-              
+
             </div>
           </Modal>
         </section>
 
-        <table className="table table-striped">
+        <table className="table table-striped" id="tableContent" >
           <thead className="head-table">
             <tr>
               <th scope="col">Codigo Envio</th>
+              <th scope="col">Feach Inicio</th>
+              <th scope="col">Valor Envio</th>
               <th scope="col">Vehiculo Asignado</th>
               <th scope="col">Ciudad Origen</th>
               <th scope="col">Ciudad Destino</th>
@@ -243,25 +268,21 @@ class ShippingContent extends Component {
             </tr>
           </thead>
           <tbody className="body-table">
-            {this.state.data.map((character) => (
+            {this.state.shippingData.map((data) => (
               <tr className="tr-table">
-
-                <td>{character.modelo}</td>
-                <td>{character.placa}</td>
-                <td>{character.marca}</td>
-                <td>{character.marca}</td>
-                <td>En proceso</td>
+                <td scope="col">{data.id_envio}</td>
+                <td>{data.fecha_inicio}</td>
+                <td>{data.valor_envio}</td>
+                <td>{data.placa}</td>
+                <td>{data.ciudad_origen}</td>
+                <td>{data.ciudad_destino}</td>
+                <td>{data.estado}</td>
+                <td>editar</td>
               </tr>
-          ))}
+
+            ))}
           </tbody>
         </table>
-        {/* <h1>Ciclo de vida </h1>
-        <h2>Vehiculo Informacion</h2>
-        <ul>
-          {this.state.data.map((character) => (
-            <li>{character.placa}</li>
-          ))}
-        </ul> */}
       </div>
     );
   }

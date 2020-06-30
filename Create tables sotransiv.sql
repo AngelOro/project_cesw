@@ -1,17 +1,14 @@
+CREATE TABLE tbl_usuarios (
+  id_usuarios      int(11)     unsigned NOT NULL AUTO_INCREMENT,
+  usuario   varchar(30)  not null,
+  clave    varchar(50)  not null,
+  constraint pk_usuarios PRIMARY KEY (id_usuarios)
+);
 
-drop table tbl_consumo_vehiculo;
-drop table tbl_detalle_producto;
-drop table tbl_envios;
-drop table tbl_vehiculo_asignado;
-drop table tbl_vehiculos;
-drop table tbl_conductores;
-drop table tbl_productos;
-drop table tbl_estados;
-drop table tbl_ciudades;
-drop table tbl_tipos_consumos;
-drop table tbl_tipos_vehiculos;
-drop table tbl_marcas_vehiculos;
-drop table tbl_usuarios;
+INSERT INTO tbl_usuarios (usuario, clave) 
+     VALUES ('edwar', '12345'),
+			('esteban', '1234'), 
+            ('angelica',  '123456');
 
 create table tbl_marcas_vehiculos(
 id_marca integer not null,

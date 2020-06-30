@@ -10,10 +10,11 @@ const Main = () => {//deja de ser un componente stateful no contiene {}
     <>
       
       <MainContent />
-      <UserContent/>
+      
 
     </>
   );
 }
 
 export default Main;
+//<UserContent/>
