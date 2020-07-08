@@ -1,0 +1,35 @@
+ #container-content {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    padding-top: 100px;
+    text-align: center;
+}
+
+.btn-1 {
+    background-color: #07A195;
+    border-radius: 100%;
+    width: 204px;
+    height: 194px;
+    
+}
+
+.btn-2{
+    background-color: #07A195;
+    border-radius: 100%;
+    width: 204px;
+    height: 194px;
+} 
+
+ .h1-main{
+
+    padding-left: 30%;
+
+}
+.row{
+    padding-block-end: 20px;
+} 
+
+   

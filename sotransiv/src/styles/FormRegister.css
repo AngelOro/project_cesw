@@ -1,0 +1,48 @@
+.btn-register {
+  margin: 4px 4px;
+  border-radius: 4px;
+  background: #07a195;
+  border-color: #07a195;
+}
+
+.form-title {
+  text-align: center;
+  padding: 40px;
+  color: black;
+}
+
+body {
+  background: white;
+}
+
+.btn-formvehicle {
+  margin: 15px;
+  border-color: #07a195;
+  width: 100px;
+  height: 50px;
+  border-radius: 5px;
+  background-color: #07a195;
+}
+
+.btn-action {
+  justify-content: center;
+  display: flex;
+}
+.conduct{
+  width: 80%;
+}
+
+.formConduct {
+  margin-left: 120px;
+}
+.form-vehiculo{
+  margin: 20px 80px;
+}
+#btn-conduct{
+    border-color: #07a195;
+    width: 100px;
+    height: 50px;
+    border-radius: 5px;
+    background-color: #07a195;
+    margin-left: 180px;
+}

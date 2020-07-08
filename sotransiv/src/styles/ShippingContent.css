@@ -1,0 +1,87 @@
+/* #btn-search {
+    background-color: #07a195;
+    width: 100px;
+    height: 35px;
+  }
+  
+ 
+  .table{
+    position: static;
+  }
+  .body-table{
+    height: 290px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    position: absolute;
+    display: grid;
+    width: 80%;
+  }
+  
+  .table td{
+    padding: 0.75rem;
+    vertical-align: top;
+    border-top: 1px solid #dee2e6;
+    width: 6%;
+    display: inline-grid;
+  }
+  .table th{
+ 
+    vertical-align: top;
+    border-top: 1px solid #dee2e6;
+    
+    text-align: center;
+  }
+  .tr-table{
+    width: 200%;
+  }
+  
+  #edit-icon {
+    font-size: x-large;
+  }
+  
+  #delete-icon {
+    font-size: x-large;
+  }
+  
+  #image {
+    text-align: left;
+  }
+  
+  #icon-edit {
+    color: black;
+    font-size: x-large;
+  }
+  .ion-md-search {
+    color: black;
+  }
+  
+  #form-input {
+    margin-left: 250px;
+    padding: 20px 0;
+  }
+  
+  .btn-new {
+    padding: 20px 0;
+  }
+  
+  .input-search {
+    height: 40px;
+    width: 300px;
+    border-radius: 5px;
+    border-color: grey;
+  }
+  
+  #row-container {
+    margin-top: 50px;
+  }
+  
+  .form-vehiculo label{
+  color: black;
+  }
+  
+  .tittle {
+    margin-top: 30px;
+    text-align: center;
+    color: black;
+  }
+   */
