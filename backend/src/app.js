@@ -1,8 +1,11 @@
-
+const bodyParser = require('body-parser')
 var express = require('express')
 var cors = require('cors')
 var app = express()
- 
+
+
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }))
 app.use(cors())
  
 app.get('/user', function (req, res, next) {
@@ -31,7 +34,7 @@ app.use('/Conduct', routersConduct);
 
 
 //Settings, configuración del servidor
-app.set('port', process.env.PORT || 3000) //Se asigna el puerto 
+app.set('port', process.env.PORT || 3001) //Se asigna el puerto 
 //Middlewares
 app.use(express.json());
 

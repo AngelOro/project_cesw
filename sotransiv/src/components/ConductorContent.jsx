@@ -31,7 +31,7 @@ class ConductorContent extends Component {
   }
 
   _fetchData() {
-    Axios.get("http://192.168.0.20:3000/Conduct/")
+    Axios.get("http://192.168.0.20:3001/Conduct/")
       .then((res) => {
         if (res.data.success) {
           const data = res.data.data;

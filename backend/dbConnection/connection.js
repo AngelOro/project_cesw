@@ -5,7 +5,7 @@ module.exports = () =>
   mysql.createConnection(
     {
       host: "localhost",
-      user: "root",
+      user: "sotransiv",
       password: "1234",
       database: "sotransiv",
       port: 3306,

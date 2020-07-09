@@ -41,7 +41,7 @@ class ShippingContent extends Component {
   }
 
   _fetchData() {
-    Axios.get("http://192.168.1.2:3001/Shipping/")
+    Axios.get("http://192.168.0.20:3001/Shipping/")
       .then((res) => {
         if (res.data.success) {
           const data = res.data.data;
@@ -75,7 +75,7 @@ class ShippingContent extends Component {
       return campo.indexOf(textData) > -1;
     });
     this.setState({
-      data: newData,
+      shippingData: newData,
       textBuscar: text,
     });
   }
