@@ -2,10 +2,11 @@
   "name": "backend",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "dev": "nodemon src/app.js",
-    "build": "netlify-lambda build src"
+    "build": "netlify-lambda build src",
+    "start": "node src/app.js"
   },
   "keywords": [],
   "author": "",
