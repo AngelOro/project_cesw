@@ -5,8 +5,8 @@ var app = express()
  
 app.use(cors())
  
-app.get('/user', function (req, res, next) {
-  res.json({msg: 'This is CORS-enabled for all origins!'})
+app.get('/', function (req, res, next) {
+  res.json({msg: '¡¡Bienvenido a SotranSIV!!'})
 })
 
 

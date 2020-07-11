@@ -42,7 +42,7 @@ class VehicleContent extends Component {
   }
 
   _fetchData() {
-    Axios.get("http://192.168.56.1:3001/Vehicle/")
+    Axios.get("https://sotransiv-app.herokuapp.com/Vehicle")
       .then((res) => {
         if (res.data.success) {
           const data = res.data.data;
