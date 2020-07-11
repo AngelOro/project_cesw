@@ -41,7 +41,7 @@ class ShippingContent extends Component {
   }
 
   _fetchData() {
-    Axios.get("http://192.168.1.2:3001/Shipping/")
+    Axios.get("http://192.168.56.1:3001/Shipping/")
       .then((res) => {
         if (res.data.success) {
           const data = res.data.data;
@@ -63,26 +63,51 @@ class ShippingContent extends Component {
       });
   }
 
+  _fetchdataForm() {
+    Axios.get("http://192.168.56.1:3001/Shipping/")
+      .then((res) => {
+        const shippingdataForm = res.dataForm;
+        console.log(shippingdataForm);
+        this.setState({
+          loadingForm: false,
+          dataForm: shippingdataForm,
+        });
+      })
+      .catch((errorForm) => {
+        this.setState({
+          loadingForm: false,
+          errorForm: isNaN,
+        });
+      });
+  }
+
 
   filter(event) {
     var text = event.target.value;
     const data = this.state.shippingBackup;
     const newData = data.filter(function (item) {
       const itemData = item.id_envio;
+      const itemValor = item.valor_envio;
       const itemDataDescp = item.ciudad_destino.toUpperCase();
-      const campo = itemData + " " + itemDataDescp;
+      const campo = itemData + " " +itemValor + " " + itemDataDescp;
       const textData = text.toUpperCase();
       return campo.indexOf(textData) > -1;
     });
     this.setState({
-      data: newData,
+      shippingData: newData,
       textBuscar: text,
     });
   }
 
   componentDidMount() {
     this._fetchData();
+    this._fetchdataForm();
   }
+
+  changeHandler = (e) => {
+    this.setState({ [e.target.name]: e.target.value });
+  };
+
 
   render() {
     const {
@@ -91,6 +116,7 @@ class ShippingContent extends Component {
       fecha_fin,
       id_vehiculo,
       id_origen,
+      id_destino,
     } = this.state;
 
     if (this.state.loading) {
@@ -168,9 +194,16 @@ class ShippingContent extends Component {
                     </div>
                     <div class="form-group col-md-6">
                       <label for="inputVehiculoAsignado">Vehiculo Asignado</label>
-                      <select id="inputVehiculoAsignado" class="form-control">
-                        <option selected>Choose...</option>
-                        <option>...</option>
+                      <select 
+                        id="inputVehiculoAsignado" 
+                        class="form-control"
+                        value={id_vehiculo}
+                        onChange={this.changeHandler}
+                        >
+                        {this.state.shippingData.map((shipping) =>(
+                          <option>{shipping.id_vehiculo}</option>
+                        ))}  
+                        
                       </select>
                     </div>
 
@@ -219,21 +252,18 @@ class ShippingContent extends Component {
                       </select>
                     </div>
 
-                    <div class="form-group col-md-3">
-                      <label for="inputState">Fecha Inicio</label>
-                      <select id="inputState" class="form-control">
-                        <option selected>Choose...</option>
-                        <option>...</option>
-                      </select>
-                    </div>
+                    
+                    <div className="form-group col-md-3">
+                        <label>Fecha Inicio</label>
+                        <input className="form-control" type="date" />
+                      </div>
 
-                    <div class="form-group col-md-3">
-                      <label for="inputState">Fecha Fin</label>
-                      <select id="inputState" class="form-control">
-                        <option selected>Choose...</option>
-                        <option>...</option>
-                      </select>
-                    </div>
+
+
+                    <div className="form-group col-md-3">
+                        <label>Fecha Fin</label>
+                        <input className="form-control" type="date" />
+                      </div>
 
                   </div>
                   <div class="form-group">
