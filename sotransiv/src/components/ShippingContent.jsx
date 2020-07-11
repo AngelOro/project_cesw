@@ -41,7 +41,7 @@ class ShippingContent extends Component {
   }
 
   _fetchData() {
-    Axios.get("http://192.168.0.20:3001/Shipping/")
+    Axios.get("https://sotransiv-app.herokuapp.com/Shipping/")
       .then((res) => {
         if (res.data.success) {
           const data = res.data.data;

@@ -45,7 +45,7 @@ class VehicleContent extends Component {
   }
 // Metodo que trae la información de cada vehículo registrado
   _fetchData() {
-    Axios.get("http://192.168.0.20:3001/Vehicle/")
+    Axios.get("https://sotransiv-app.herokuapp.com/Vehicle/")
       .then((res) => {
         if (res.data.success) {
           const data = res.data.data;
@@ -70,7 +70,7 @@ class VehicleContent extends Component {
 
   // Metodo que trae los tipos de vehículos almacenados en la base de datos
   _fetchTypeVehicle(){
-    Axios.get("http://192.168.0.20:3001/Vehicle/typeVehicle")
+    Axios.get("https://sotransiv-app.herokuapp.com/Vehicle/typeVehicle")
     .then((res) => {
       if (res.data.success) {
         const data = res.data.data;
@@ -94,7 +94,7 @@ class VehicleContent extends Component {
 
    // Metodo que trae los tipos de vehículos almacenados en la base de datos
    _fetchMarcaVehicle(){
-    Axios.get("http://192.168.0.20:3001/Vehicle/marcaVehicle")
+    Axios.get("https://sotransiv-app.herokuapp.com/Vehicle/marcaVehicle")
     .then((res) => {
       if (res.data.success) {
         const data = res.data.data;
@@ -157,7 +157,7 @@ class VehicleContent extends Component {
   // };
 
   submitHandler () {
-    const baseUrl = "http://192.168.0.20:3001/Vehicle/newVehicle"
+    const baseUrl = "https://sotransiv-app.herokuapp.com/Vehicle/newVehicle"
 
             const datapost = {
                 placa: this.state.placa,
