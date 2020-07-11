@@ -37,7 +37,8 @@ class ConductorContent extends Component {
   }
 
   _fetchData() {
-    axios.get("http://192.168.56.1:3001/Conduct/")
+
+    Axios.get("https://sotransiv-app.herokuapp.com/Conduct")
       .then((res) => {
         if (res.data.success) {
           const data = res.data.data;

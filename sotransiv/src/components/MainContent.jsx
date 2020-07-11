@@ -25,9 +25,9 @@ function Content() {
           <Link to="/Shipping" className="d-block text-light p-3 border-0">
             <i className="icon ion-md-paper-plane lead mr-2"></i>Envíos
           </Link>
-          <Link to="/Report" className="d-block text-light p-3 border-0">
+          {/* <Link to="/Report" className="d-block text-light p-3 border-0">
             <i className="icon ion-md-stats lead mr-2"></i> Reportes
-          </Link>
+          </Link> */}
 
          
         </div>
