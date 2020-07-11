@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import "../styles/VehicleContent.css";
-import { link, Link } from "react-router-dom";
 import Axios from "axios";
 import Modal from "react-awesome-modal";
 import foto from "../images/icono.png";

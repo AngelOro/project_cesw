@@ -169,5 +169,34 @@ values (1040759456,"Juan Esteban","Olaya","Lopez",3058578770,sysdate(),"LCEJGFSO
 INSERT INTO tbl_conductores(identificacion, nombre, primer_apellido, segundo_apellido, telefono_contacto,fecha_nacimiento,licencia_conduccion)
 values (9992964,"Diego Juan","Olaya","franco",3136262661,sysdate(),"OPFGSHK");
 
+insert into tbl_envios (fecha_inicio,fecha_fin,valor_envio,id_vehiculo,id_estado,id_origen,id_destino)
+values ('1995-01-29','2000-01-29', "3000",1,2,2,1);
+
+insert into tbl_envios  (fecha_inicio,fecha_fin,valor_envio,id_vehiculo,id_estado,id_origen,id_destino)
+values (2,sysdate(),sysdate(), "4000",2,1,1,2);
+
+insert into tbl_ciudades values(1, "Medellin");
+insert into tbl_ciudades values(2, "Bogota");
+insert into tbl_ciudades values(3, "Cartagena");
+
+insert into tbl_envios (fecha_inicio,fecha_fin,valor_envio,id_vehiculo,id_estado,id_origen,id_destino)
+values ('1995-01-29','2000-01-29', "3000",1,2,2,1);
+
+insert into tbl_envios  (fecha_inicio,fecha_fin,valor_envio,id_vehiculo,id_estado,id_origen,id_destino)
+values (sysdate(),sysdate(), "4000",1,1,1,2);
+
+select * from tbl_envios;
+
+select * from tbl_vehiculo_asignado;
+
+insert into tbl_vehiculo_asignado(id_vehiculo,id_conductor,fecha_asignacion) values (1,1040759456,sysdate());
+
+select * from tbl_vehiculos;
+
+select * from tbl_ciudades;
+
+select * from tbl_estados;
+select * from tbl_marcas_vehiculos;
+
 
 SELECT * FROM tbl_conductores;
