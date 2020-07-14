@@ -17,15 +17,32 @@ URL: https://sotransiv.netlify.app/
 ### Esta API fue desarrollada  haciendo uso de NodeJs y Express.js y MySql.
 ### y se realizo el deploy del backend en Heroku 
 
+
+### Módulo Vehículos
+
 Consigue todos los Vehiculos
 Puede acceder a la lista de caracteres utilizando el /Vehicle
 
 https://sotransiv-app.herokuapp.com/Vehicle
 
+Para acceder a la lista de tipo de vehículos utiliza /Vehicle/typeVehicle
+https://sotransiv-app.herokuapp.com/Vehicle/typeVehicle
+
+Para acceder a la lista de las marcas de los vehículos utiliza 
+https://sotransiv-app.herokuapp.com/Vehicle/marcaVehicle
+
+Para crear un nuevo vehículo se utiliza la siguiente URL
+https://sotransiv-app.herokuapp.com/Vehicle/newVehicle 
+
+### Módulo Conductores
+
 Consigue todos los Conductores
 Puede acceder a la lista de caracteres utilizando el /Conduct
 
 https://sotransiv-app.herokuapp.com/Conduct
+
+
+### Módulo Envíos
 
 Consigue todos los Envios
 Puede acceder a la lista de caracteres utilizando el /Shipping
