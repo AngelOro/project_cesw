@@ -14,8 +14,7 @@ URL: https://sotransiv.netlify.app/
 
 ## EndPoint API
 
-### Esta API fue desarrollada  haciendo uso de NodeJs y Express.js y MySql.
-### y se realizo el deploy del backend en Heroku 
+#### Esta API fue desarrollada  haciendo uso de NodeJs, Express.js y MySql. Se realizo el deploy del backend en Heroku 
 
 
 ### Módulo Vehículos
