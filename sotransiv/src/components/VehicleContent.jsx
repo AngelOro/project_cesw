@@ -45,7 +45,8 @@ class VehicleContent extends Component {
   }
 // Metodo que trae la información de cada vehículo registrado
   _fetchData() {
-    Axios.get("https://sotransiv-app.herokuapp.com/Vehicle/")
+    //Axios.get("https://sotransiv-app.herokuapp.com/Vehicle/")
+    Axios.get("http://localhost:3001/Vehicle/")
       .then((res) => {
         if (res.data.success) {
           const data = res.data.data;
@@ -70,7 +71,8 @@ class VehicleContent extends Component {
 
   // Metodo que trae los tipos de vehículos almacenados en la base de datos
   _fetchTypeVehicle(){
-    Axios.get("https://sotransiv-app.herokuapp.com/Vehicle/typeVehicle")
+    //Axios.get("https://sotransiv-app.herokuapp.com/Vehicle/typeVehicle")
+    Axios.get("http://localhost:3001/Vehicle/typeVehicle")
     .then((res) => {
       if (res.data.success) {
         const data = res.data.data;
@@ -94,7 +96,8 @@ class VehicleContent extends Component {
 
    // Metodo que trae los tipos de vehículos almacenados en la base de datos
    _fetchMarcaVehicle(){
-    Axios.get("https://sotransiv-app.herokuapp.com/Vehicle/marcaVehicle")
+    //Axios.get("https://sotransiv-app.herokuapp.com/Vehicle/marcaVehicle")
+    Axios.get("http://localhost:3001/Vehicle/marcaVehicle")
     .then((res) => {
       if (res.data.success) {
         const data = res.data.data;
@@ -142,23 +145,11 @@ class VehicleContent extends Component {
   };
 
   // submitHandler = (e) => {
-  //   e.preventDefault();
-  //   console.log(this.state);
-  //   Axios.post("http://192.168.0.20:3001/Vehicle/newVehicle", this.state)
-  //     .then((response) => {
-  //       console.log(response.data);
-  //     })
-  //     .catch((error) => {
-  //       this.setState({
-  //         loading: false,
-  //         error: isNaN,
-  //       });
-  //     });
-  // };
+  
 
   submitHandler () {
-    const baseUrl = "https://sotransiv-app.herokuapp.com/Vehicle/newVehicle"
-
+    //const baseUrl = "https://sotransiv-app.herokuapp.com/Vehicle/newVehicle"
+    const baseUrl = "http://localhost:3001/Vehicle/newVehicle"
             const datapost = {
                 placa: this.state.placa,
                 matricula: this.state.matricula,
@@ -182,52 +173,6 @@ class VehicleContent extends Component {
                     alert("Error 34 " + error)
                 })
   };
-
-
-  // sendSave(){
-
-  //   if (this.state.selectRole==0) {
-  //     alert("Seleccione el tipo de Role")
-  //   }
-  //   else if (this.state.campPhone=="") {
-  //      alert("Digite el campo de telefono")
-  //   }
-  //   else if (this.state.campName=="") {
-  //      alert("Digite el campo de Nombre")
-  //   }
-  //   else if (this.state.campEmail=="") {
-  //      alert("Digite el campo de email")
-  //   }
-  //   else if (this.state.campAddress=="") {
-  //      alert("Digite el campo de Direccion")
-  //   }
-  //   else {
- 
-  //     const baseUrl = "http://localhost:3000/employee/create"
- 
-  //     const datapost = {
-  //       name : this.state.campName,
-  //       email : this.state.campEmail,
-  //       phone : this.state.campPhone,
-  //       address : this.state.campAddress,
-  //       role  : this.state.selectRole
-  //     }
- 
-  //     axios.post(baseUrl,datapost)
-  //     .then(response=>{
-  //       if (response.data.success===true) {
-  //         alert(response.data.message)
-  //       }
-  //       else {
-  //         alert(response.data.message)
-  //       }
-  //     }).catch(error=>{
-  //       alert("Error 34 "+error)
-  //     })
- 
-  //   }
- 
-  // }
 
   render() {
     const {

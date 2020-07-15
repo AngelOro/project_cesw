@@ -9,4 +9,5 @@ controller.getConduct = (req, res, next) => {
     })
 }
 
+
 module.exports = controller;
