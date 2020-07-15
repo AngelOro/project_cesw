@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import "../styles/VehicleContent.css";
-import { link, Link } from "react-router-dom";
 import Axios from "axios";
 import Modal from "react-awesome-modal";
 import foto from "../images/icono.png";
@@ -47,6 +46,7 @@ class VehicleContent extends Component {
   _fetchData() {
     //Axios.get("https://sotransiv-app.herokuapp.com/Vehicle/")
     Axios.get("http://localhost:3001/Vehicle/")
+
       .then((res) => {
         if (res.data.success) {
           const data = res.data.data;
@@ -144,8 +144,6 @@ class VehicleContent extends Component {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  // submitHandler = (e) => {
-  
 
   submitHandler () {
     //const baseUrl = "https://sotransiv-app.herokuapp.com/Vehicle/newVehicle"

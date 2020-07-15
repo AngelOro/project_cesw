@@ -1,11 +1,11 @@
-const bodyParser = require('body-parser')
 var express = require('express')
 var cors = require('cors')
 var app = express()
-
+const bodyParser = require('body-parser')
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
+ 
 app.use(cors())
  
 app.get('/', function (req, res, next) {
