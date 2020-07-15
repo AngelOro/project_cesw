@@ -7,7 +7,7 @@ const controller = require('../controllers/vehicle.controller');
 router.get('/', controllerVehicle.getVehicles);
 router.get('/typeVehicle', controllerVehicle.getTypeVehicle);
 router.get('/marcaVehicle', controllerVehicle.getMarcaVehicle);
-
+router.get('/vehicleAvailable', controllerVehicle.getVehicleAvailable);
 
 router.post('/newVehicle', controllerVehicle.insertVehicle);
 

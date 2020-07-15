@@ -37,6 +37,16 @@ controller.getMarcaVehicle = (req, res, next) => {
   );
 };
 
+controller.getVehicleAvailable = ( ) => {
+  conn.query(
+    "SELECT id_vehiculo, placa FROM tbl_vehiculos WHERE id_estado = 1 or id_estado = 5",
+    (err, rows) => {
+      if (err) next(new Error(err));
+      else res.json({ success: true, data: rows });
+    }
+  );
+};
+
 controller.insertVehicle = async (req, res) => {
   // data
   const {
