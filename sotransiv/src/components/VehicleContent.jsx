@@ -265,7 +265,7 @@ class VehicleContent extends Component {
     let id_vehiculo = this.state.id_vehiculo;
     console.log(id_vehiculo);
     // url de backend
-    const baseUrl = "http://localhost:3001/Vehicle/vehicleEdit"+id_vehiculo
+    const baseUrl = "http://localhost:3001/Vehicle/vehicleEdit/"+id_vehiculo
     // parametros de datos post
     const datapost = {
       placa : this.state.placa,
