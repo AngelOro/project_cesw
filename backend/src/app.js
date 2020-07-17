@@ -34,7 +34,6 @@ const routersConduct = require('./routes/conduct.routes')
 
 //Routes
 app.use('/Vehicle', routersVehicles);
-app.use('/user', routersUsers);
 app.use('/Shipping', routersShipping);
 app.use('/Conduct', routersConduct);
 
