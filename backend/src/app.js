@@ -28,7 +28,6 @@ app.listen(3000, function () {
 
 const routersShipping = require('./routes/shipping.routes');
 const routersVehicles = require('./routes/vehicle.routes');
-const routersUsers = require('./routes/user.routes')
 const routersConduct = require('./routes/conduct.routes')
 
 

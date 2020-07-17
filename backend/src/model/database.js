@@ -2,7 +2,7 @@ var Sequelize = require('sequelize');
 
 const sequelize = new Sequelize(
 
-    'sotransiv', //database
+    'sotraniv', //database
     'sotransiv', //user
     '1234',      //pass
     {
