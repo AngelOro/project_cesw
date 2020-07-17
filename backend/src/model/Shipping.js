@@ -5,7 +5,7 @@ var nameTable = 'tbl_envios';
 
 var Envios = sequelize.define(nameTable, {
 
-    id_envios:{
+    id_envio:{
         type:Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true

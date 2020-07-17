@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "../styles/VehicleContent.css";
-import axios from "axios";
+import Axios from "axios";
 import Modal from "react-awesome-modal";
 import "../styles/FormRegister.css";
 
@@ -10,10 +10,11 @@ class ConductorContent extends Component {
     this.state = {
       loading: true,
       error: null,
-      data: {},
+      data: [],
       dataBackup: {},
-      vehicleAvailable: {},
+      vehicleAvailable: [],
       visible: false,
+      modalPlaca: false,
       textoBuscar: "",
       identificacion: "",
       nombre: "",
@@ -23,6 +24,7 @@ class ConductorContent extends Component {
       fecha_nacimiento: "",
       licencia_conduccion: "",
       select_placa: 0,
+      identificacionAsg: ""
     };
   }
 
@@ -31,17 +33,27 @@ class ConductorContent extends Component {
       visible: true,
     });
   }
+  openModalPlaca(identificacion) {
+    this.setState({
+      modalPlaca: true,
+      identificacionAsg: identificacion,
+    });
 
+  }
   closeModal() {
     this.setState({
       visible: false,
+    });
+  }
+  closeModalPlaca() {
+    this.setState({
+      modalPlaca: false,
     });
   }
 
   _fetchData() {
     //Axios.get("https://sotransiv-app.herokuapp.com/Conduct")
     Axios.get("http://localhost:3001/Conduct")
-
       .then((res) => {
         if (res.data.success) {
           const data = res.data.data;
@@ -87,7 +99,6 @@ class ConductorContent extends Component {
         });
       });
   }
-
   componentDidMount() {
     this._fetchData();
     this._fetchVehicleAvailable();
@@ -110,6 +121,26 @@ class ConductorContent extends Component {
     });
   }
 
+  assignVehicle() {
+    //const baseUrl = "https://sotransiv-app.herokuapp.com/Vehicle/newVehicle"
+    const baseUrl = "http://localhost:3001/Conduct/assignVehicle"
+            const datapost = {
+                id_vehiculo: this.state.select_placa,
+                id_conductor: this.state.identificacionAsg
+            }
+            console.log(datapost);
+            Axios.post(baseUrl, datapost)
+                .then(response => {
+                    if (response.data.success === true) {
+                        alert(response.data.message)
+                    } else {
+                        alert(response.data.message)
+                    }
+                }).catch(error => {
+                    alert("Error 34 " + error)
+                })
+  };
+
   render() {
     const {
       identificacion,
@@ -120,6 +151,7 @@ class ConductorContent extends Component {
       fecha_nacimiento,
       licencia_conduccion,
       select_placa,
+      identificacionAsg,
     } = this.state;
 
     if (this.state.loading) {
@@ -265,21 +297,6 @@ class ConductorContent extends Component {
                           }
                         />
                       </div>
-                      <div className="form-group">
-                        <label>Vehiculo asignado</label>
-                        <select
-                          className="form-control"
-                          name="select_placa"
-                          value={select_placa}
-                          onChange={this.changeHandler}
-                        >
-                          {this.state.vehicleAvailable.map((vehicle) => (
-                            <option value={vehicle.id_vehiculo}>
-                              {vehicle.placa}
-                            </option>
-                          ))}
-                        </select>
-                      </div>
 
                       <div className="form-group">
                         <label>Fecha de nacimiento</label>
@@ -321,6 +338,72 @@ class ConductorContent extends Component {
             </div>
           </Modal>
         </section>
+        <section>
+          <Modal
+            visible={this.state.modalPlaca}
+            width="390"
+            height="450"
+            effect="fadeInUp"
+            onClickAway={() => this.closeModalPlaca()}
+          >
+            
+              <h3 className="form-title">Asignar Vehículo</h3>
+              <form>
+                <div className="form-group" id="modalPlaca">
+                  <label id="labelPlaca">Identificacion</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    value={this.state.identificacionAsg}
+                    onChange={(value) =>
+                      this.setState({
+                        identificacionAsg: value.target.value,
+                      })
+                    }
+                  />
+                </div>
+                <div className="form-group" id="modalPlaca">
+                  <label id="labelPlaca">Seleccionar Vehículo</label>
+                  <select
+                    className="form-control"
+                    name="select_placa"
+                    value={this.state.select_placa}
+                    onChange={(value) =>
+                      this.setState({
+                        select_placa: value.target.value,
+                      })
+                    }
+                  >
+                    {this.state.vehicleAvailable.map((vehicle) => (
+                      <option value={vehicle.id_vehiculo}>
+                        {vehicle.placa}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+                <div className="form-row btn-action conduct">
+                  <div className="form-group col-md-3">
+                    <button
+                      type="submit"
+                      className="btn-primary btn-formvehicle"
+                      onClick={() => this.assignVehicle()}
+                    >
+                      Asignar
+                    </button>
+                  </div>
+                  <div className="form-group col-md-3">
+                    <button
+                      type="button"
+                      className="btn-primary btn-formvehicle"
+                      onClick={() => this.closeModalPlaca()}
+                    >
+                      Cancelar
+                    </button>
+                  </div>
+                </div>
+                </form>
+          </Modal>
+        </section>
         <table className="table table-striped">
           <thead className="head-table">
             <tr>
@@ -329,20 +412,29 @@ class ConductorContent extends Component {
               <th scope="col">Primer apellido</th>
               <th scope="col">Segundo apellido</th>
               <th scope="col">Telefono</th>
-              <th scope="col">Acciones</th>
+              <th scope="col" colSpan="3">
+                Acciones
+              </th>
             </tr>
           </thead>
           <tbody className="body-table">
             {this.state.data.map((data) => (
-              <tr className="tr-table">
+              <tr className="tr_conduct">
                 <td>{data.identificacion}</td>
                 <td>{data.nombre}</td>
                 <td>{data.primer_apellido}</td>
                 <td>{data.segundo_apellido}</td>
                 <td>{data.telefono_contacto}</td>
                 <td>
-                  Editar
-                  <i className="fas fa-edit" id="icon-edit"></i>
+                  <button
+                    type="button"
+                    className="btn-3 btn-primary "
+                    id="btn-asignar"
+                    value="Open"
+                    onClick={() => this.openModalPlaca(data.identificacion)}
+                  >
+                    Asignar Vehículo
+                  </button>
                 </td>
               </tr>
             ))}
@@ -359,8 +451,6 @@ class ConductorContent extends Component {
       alert("Digite el campo de Nombre");
     } else if (this.state.primer_apellido == "") {
       alert("Digite el campo de primer apellido");
-    } else if (this.state.segundo_apellido == "") {
-      alert("Digite el campo de segundo apellido");
     } else if (this.state.telefono_contacto == "") {
       alert("Digite el campo de telefono contacto");
     } else if (this.state.fecha_nacimiento == "") {
@@ -368,7 +458,7 @@ class ConductorContent extends Component {
     } else if (this.state.licencia_conduccion == "") {
       alert("Digite el campo licencia de conduccion");
     } else {
-      const baseUrl = "http://192.168.56.1:3001/Conduct/create";
+      const baseUrl = "http://localhost:3001/Conduct/create";
 
       const datapost = {
         identificacion: this.state.identificacion,
@@ -378,10 +468,10 @@ class ConductorContent extends Component {
         telefono_contacto: this.state.telefono_contacto,
         fecha_nacimiento: this.state.fecha_nacimiento,
         licencia_conduccion: this.state.licencia_conduccion,
+        select_placa: this.state.select_placa,
       };
       console.log(datapost);
-      axios
-        .post(baseUrl, datapost)
+      Axios.post(baseUrl, datapost)
         .then((response) => {
           if ((response.data.success = true)) {
             alert(response.data.message);
