@@ -1,3 +1,15 @@
+CREATE TABLE tbl_usuarios (
+  id_usuarios      int(11)     unsigned NOT NULL AUTO_INCREMENT,
+  usuario   varchar(30)  not null,
+  clave    varchar(50)  not null,
+  constraint pk_usuarios PRIMARY KEY (id_usuarios)
+);
+
+INSERT INTO tbl_usuarios (usuario, clave) 
+     VALUES ('edwar', '12345'),
+			('esteban', '1234'), 
+            ('angelica',  '123456');
+
 create table tbl_marcas_vehiculos(
 id_marca integer not null,
 descripcion varchar(50) not null,
@@ -120,6 +132,7 @@ CREATE TABLE tbl_usuarios (
   constraint pk_usuarios PRIMARY KEY (id_usuarios)
 );
 
+
 INSERT INTO tbl_usuarios (usuario, clave) 
      VALUES ('edwar', '12345'),
 			('esteban', '1234'), 
@@ -130,9 +143,6 @@ insert into tbl_estados values(1, "Activo");
 insert into tbl_estados values(2, "Inactivo");
 insert into tbl_estados values(3, "En proceso");
 insert into tbl_estados values(4, "Entregado");
-insert into tbl_estados values(5, "Disponible");
-insert into tbl_estados values(6, "Ocupado");
-
 
 
 insert into tbl_marcas_vehiculos values (1, "KENWORTH");
@@ -188,54 +198,8 @@ select * from tbl_ciudades;
 select * from tbl_estados;
 select * from tbl_marcas_vehiculos;
 
-
 SELECT * FROM tbl_conductores;
 
+SELECT * FROM tbl_conductores where identificacion = 1040759456;
 
-DROP procedure IF EXISTS `Insert_Conduct`;
-
-DELIMITER $$
-
-CREATE PROCEDURE `Insert_Conduct`(
-IN 
-	p_identificacion VARCHAR(15), 
-	p_nombre VARCHAR(60), 
-    p_primer_apellido VARCHAR(30),
-    p_segundo_apellido VARCHAR(30),
-    p_telefono_contacto VARCHAR(15),
-    p_fecha_nacimiento DATE,
-    p_licencia_conduccion VARCHAR(30),
-    p_id_vehiculo INTEGER
-)
-BEGIN
-	INSERT INTO tbl_conductores
-    (identificacion, 
-	 nombre, 
-     primer_apellido, 
-     segundo_apellido, 
-     telefono_contacto,
-     fecha_nacimiento,
-     licencia_conduccion)
-	VALUES (p_identificacion, 
-			p_nombre, 
-            p_primer_apellido, 
-            p_segundo_apellido, 
-            p_telefono_contacto, 
-            p_fecha_nacimiento,
-            p_licencia_conduccion);
-            
-	INSERT INTO tbl_vehiculo_asignado 
-    (id_vehiculo,
-	 id_conductor,
-     fecha_asignacion)
-    VALUES(p_id_vehiculo,
-		   p_identificacion,
-		   Sysdate());
-           
-	UPDATE tbl_vehiculos
-	SET id_estado = 6
-	WHERE id_vehiculo = p_id_vehiculo;
-END$$
-
-DELIMITER ;
-
+update tbl_conductores set identificacion

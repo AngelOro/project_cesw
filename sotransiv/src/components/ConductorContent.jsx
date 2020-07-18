@@ -3,6 +3,7 @@ import "../styles/VehicleContent.css";
 import Axios from "axios";
 import Modal from "react-awesome-modal";
 import "../styles/FormRegister.css";
+import Swal from 'sweetalert2/dist/sweetalert2.js';
 
 class ConductorContent extends Component {
   constructor(props) {
@@ -13,6 +14,7 @@ class ConductorContent extends Component {
       data: [],
       dataBackup: {},
       vehicleAvailable: [],
+      ConductEdit:[],
       visible: false,
       modalPlaca: false,
       textoBuscar: "",
@@ -24,13 +26,18 @@ class ConductorContent extends Component {
       fecha_nacimiento: "",
       licencia_conduccion: "",
       select_placa: 0,
-      identificacionAsg: ""
+      identificacionAsg: "",
+      visible_actualizar: true,
+      visible_registrar:true,
     };
   }
 
   openModal() {
     this.setState({
       visible: true,
+      visible_actualizar: true,
+      visible_registrar:false,
+      
     });
   }
   openModalPlaca(identificacion) {
@@ -51,6 +58,156 @@ class ConductorContent extends Component {
     });
   }
 
+  onDeleteConduct(identificacion){
+    Swal.fire({
+      title: 'Eliminar Conductor',
+      text: '¿Está seguro de eliminar Conductor?',
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Eliminar',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.value) {
+        this.sendDelete(identificacion)
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        Swal.fire(
+          'Cancelado',
+          'No se eliminó Conductor',
+          'error'
+        )
+      }
+    })
+  };
+
+  sendDelete(identificacion)
+  {
+    const baseUrl = "http://localhost:3000/Conduct/deleteConduct"   
+    Axios.post(baseUrl,{
+      identificacion:identificacion
+    })
+    .then(response =>{
+      if (response.data.success) {
+        Swal.fire(
+          'Eliminado',
+          'El conductor fue eliminado',
+          'success'
+        )
+        this._fetchData();
+      }
+    })
+    .catch ( error => {
+      alert("Error 325 ")
+    })
+  };
+
+  sendUpdate(){
+    //  get parameter id
+    let identificacion = this.state.identificacion;
+    // url de backend
+    const baseUrl = "http://localhost:3000/Conduct/ConductEdit/"+identificacion
+    // parametros de datos post
+    const datapost = {
+      identificacion : this.state.identificacion,
+      nombre : this.state.nombre,
+      primer_apellido : this.state.primer_apellido,
+      segundo_apellido : this.state.segundo_apellido,
+      telefono_contacto  : this.state.telefono_contacto,
+      fecha_nacimiento : this.state.fecha_nacimiento,
+      licencia_conduccion: this.state.licencia_conduccion,
+    }
+
+    Axios.put(baseUrl,datapost)
+    .then(response=>{
+      if (response.data.success===true) {
+        alert(response.data.message)
+      }
+      else {
+        alert("Error")
+      }
+    }).catch(error=>{
+      alert("Error 34 "+error)
+    })
+   }
+
+  openModalEditarConductor(identificacion) {
+    this.setState({
+      visible: true,
+      visible_actualizar: false,
+      visible_registrar:true,
+    })
+    //id_vehiculo = this.props.match.params.id_vehiculo;
+    const url = "http://localhost:3000/Conduct/editConduct/" + identificacion
+    Axios.get(url)
+    .then(res=>{
+      if (res.data.success) {
+        const data = res.data.data[0]
+        console.log(data);
+        this.setState({
+          ConductEdit:data,
+          identificacion: data.identificacion,
+          nombre:data.nombre,
+          primer_apellido:data.primer_apellido,
+          segundo_apellido:data.segundo_apellido,
+          telefono_contacto:data.telefono_contacto,
+          fecha_nacimiento:data.fecha_nacimiento,
+          licencia_conduccion: data.licencia_conduccion,
+          })
+      }
+      else {
+        alert("Error web service")
+      }
+    })
+    .catch(error=>{
+      alert("Error server "+error)
+    })
+  }
+  closeModal() {
+    this.setState({
+      visible: false,
+    });
+  };
+
+  sendSave() {
+    if (this.state.identificacion == "") {
+      alert("Digite el campo de identificacion");
+    } else if (this.state.nombre == "") {
+      alert("Digite el campo de Nombre");
+    } else if (this.state.primer_apellido == "") {
+      alert("Digite el campo de primer apellido");
+    } else if (this.state.telefono_contacto == "") {
+      alert("Digite el campo de telefono contacto");
+    } else if (this.state.fecha_nacimiento == "") {
+      alert("Digite el campo fecha de nacimiento");
+    } else if (this.state.licencia_conduccion == "") {
+      alert("Digite el campo licencia de conduccion");
+    } else {
+      const baseUrl = "http://localhost:3001/Conduct/create";
+
+      const datapost = {
+        identificacion: this.state.identificacion,
+        nombre: this.state.nombre,
+        primer_apellido: this.state.primer_apellido,
+        segundo_apellido: this.state.segundo_apellido,
+        telefono_contacto: this.state.telefono_contacto,
+        fecha_nacimiento: this.state.fecha_nacimiento,
+        licencia_conduccion: this.state.licencia_conduccion,
+        select_placa: this.state.select_placa,
+      };
+      console.log(datapost);
+      Axios.post(baseUrl, datapost)
+        .then((response) => {
+          if ((response.data.success = true)) {
+            alert(response.data.message);
+          } else {
+            alert(response.data.message);
+          }
+        })
+        .catch((error) => {
+          alert("Error 34 " + error);
+        });
+    }
+  }
+  
   _fetchData() {
     //Axios.get("https://sotransiv-app.herokuapp.com/Conduct")
     Axios.get("http://localhost:3001/Conduct")
@@ -319,10 +476,22 @@ class ConductorContent extends Component {
                         type="submit"
                         className="btn-primary btn-formvehicle"
                         onClick={() => this.sendSave()}
+                        hidden={this.state.visible_registrar}
+                      
                       >
                         Registrar
                       </button>
                     </div>
+                    <div className="form-group col-md-3">
+                    <button
+                      type="submit"
+                      className="btn-primary btn-formvehicle"
+                      onClick={()=>this.sendUpdate()}
+                      hidden={this.state.visible_actualizar}
+                    >
+                      Actualizar
+                    </button>
+                   </div>
                     <div className="form-group col-md-3">
                       <button
                         type="button"
@@ -338,7 +507,7 @@ class ConductorContent extends Component {
             </div>
           </Modal>
         </section>
-        <section>
+        {/* <section>
           <Modal
             visible={this.state.modalPlaca}
             width="390"
@@ -403,8 +572,8 @@ class ConductorContent extends Component {
                 </div>
                 </form>
           </Modal>
-        </section>
-        <table className="table table-striped">
+        </section>*/}
+        <table className="table table-striped"> 
           <thead className="head-table">
             <tr>
               <th scope="col">Identificacion</th>
@@ -425,8 +594,8 @@ class ConductorContent extends Component {
                 <td>{data.primer_apellido}</td>
                 <td>{data.segundo_apellido}</td>
                 <td>{data.telefono_contacto}</td>
-                <td>
-                  <button
+                <td id="td-actions">
+                  {/* <button
                     type="button"
                     className="btn-3 btn-primary "
                     id="btn-asignar"
@@ -434,6 +603,27 @@ class ConductorContent extends Component {
                     onClick={() => this.openModalPlaca(data.identificacion)}
                   >
                     Asignar Vehículo
+                  </button> */}
+
+                  <button
+                    type="button"
+                    className="btn-3 btn-primary "
+                    id="btn-asignar"
+                    value="Open"
+                    onClick={() => this.openModalEditarConductor(data.identificacion)}
+                  >
+                    Editar
+                  </button>
+                </td>
+                <td id="td-actions">
+                  <button
+                    type="button"
+                    className="btn-3 btn-primary "
+                    id="btn-eliminar"
+                    value="Open"
+                    onClick={()=>this.onDeleteConduct(data.identificacion)}
+                  >
+                    Eliminar
                   </button>
                 </td>
               </tr>
@@ -442,47 +632,6 @@ class ConductorContent extends Component {
         </table>
       </div>
     );
-  }
-
-  sendSave() {
-    if (this.state.identificacion == "") {
-      alert("Digite el campo de identificacion");
-    } else if (this.state.nombre == "") {
-      alert("Digite el campo de Nombre");
-    } else if (this.state.primer_apellido == "") {
-      alert("Digite el campo de primer apellido");
-    } else if (this.state.telefono_contacto == "") {
-      alert("Digite el campo de telefono contacto");
-    } else if (this.state.fecha_nacimiento == "") {
-      alert("Digite el campo fecha de nacimiento");
-    } else if (this.state.licencia_conduccion == "") {
-      alert("Digite el campo licencia de conduccion");
-    } else {
-      const baseUrl = "http://localhost:3001/Conduct/create";
-
-      const datapost = {
-        identificacion: this.state.identificacion,
-        nombre: this.state.nombre,
-        primer_apellido: this.state.primer_apellido,
-        segundo_apellido: this.state.segundo_apellido,
-        telefono_contacto: this.state.telefono_contacto,
-        fecha_nacimiento: this.state.fecha_nacimiento,
-        licencia_conduccion: this.state.licencia_conduccion,
-        select_placa: this.state.select_placa,
-      };
-      console.log(datapost);
-      Axios.post(baseUrl, datapost)
-        .then((response) => {
-          if ((response.data.success = true)) {
-            alert(response.data.message);
-          } else {
-            alert(response.data.message);
-          }
-        })
-        .catch((error) => {
-          alert("Error 34 " + error);
-        });
-    }
   }
 }
 

@@ -17,7 +17,7 @@ app.post('/', function (req, res) {
 })
 
 app.put('/', function (req, res) {
-  res.send('POST request to the homepage');
+  res.send('put request to the homepage');
 })
 
 app.listen(3000, function () {

@@ -200,6 +200,7 @@ class VehicleContent extends Component {
       id_marca: this.state.select_marca,
       id_tipo: this.state.select_type,
       id_estado: 1,
+      id_vehiculo: this.state.id_vehiculo,
     };
     console.log(datapost);
     Axios.post(baseUrl, datapost)
@@ -265,7 +266,7 @@ class VehicleContent extends Component {
     let id_vehiculo = this.state.id_vehiculo;
     console.log(id_vehiculo);
     // url de backend
-    const baseUrl = "http://localhost:3001/Vehicle/vehicleEdit"+id_vehiculo
+    const baseUrl = "http://localhost:3001/Vehicle/vehicleEdit/"+id_vehiculo
     // parametros de datos post
     const datapost = {
       placa : this.state.placa,
@@ -291,7 +292,6 @@ class VehicleContent extends Component {
     }).catch(error=>{
       alert("Error 34 "+error)
     })
-
    }
 
   render() {
