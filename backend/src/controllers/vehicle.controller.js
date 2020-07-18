@@ -126,7 +126,8 @@ controller.vehicleEdit = async (req,res) => {
     modelo,
     id_marca,
     id_tipo,
-    id_estado} = req.body;
+    id_estado
+  } = req.body;
   // Update data
   const data = await Vehiculos.update({
     placa:placa,

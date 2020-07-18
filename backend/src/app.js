@@ -17,7 +17,7 @@ app.post('/', function (req, res) {
 })
 
 app.put('/', function (req, res) {
-  res.send('POST request to the homepage');
+  res.send('put request to the homepage');
 })
 
 app.listen(3000, function () {
@@ -28,13 +28,11 @@ app.listen(3000, function () {
 
 const routersShipping = require('./routes/shipping.routes');
 const routersVehicles = require('./routes/vehicle.routes');
-const routersUsers = require('./routes/user.routes')
 const routersConduct = require('./routes/conduct.routes')
 
 
 //Routes
 app.use('/Vehicle', routersVehicles);
-app.use('/user', routersUsers);
 app.use('/Shipping', routersShipping);
 app.use('/Conduct', routersConduct);
 
