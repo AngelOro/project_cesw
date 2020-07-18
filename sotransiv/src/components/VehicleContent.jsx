@@ -200,6 +200,7 @@ class VehicleContent extends Component {
       id_marca: this.state.select_marca,
       id_tipo: this.state.select_type,
       id_estado: 1,
+      id_vehiculo: this.state.id_vehiculo,
     };
     console.log(datapost);
     Axios.post(baseUrl, datapost)
@@ -291,7 +292,6 @@ class VehicleContent extends Component {
     }).catch(error=>{
       alert("Error 34 "+error)
     })
-
    }
 
   render() {

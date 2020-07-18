@@ -117,6 +117,7 @@ controller.insertShipping = async (req, res) => {
 };
 
 
+
 controller.shippingEdit = async (req, res) => {
   // data
   const {id_envio} =req.params;
@@ -159,6 +160,7 @@ controller.shippingEdit = async (req, res) => {
   }) 
   res.json({success:true, data:data, message:"Updated successful"});
 }
+
 
 
 
