@@ -3,6 +3,8 @@ import "../styles/ShippingContent.css";
 import { link, Link } from "react-router-dom";
 import Axios from "axios";
 import Modal from 'react-awesome-modal';
+import Swal from 'sweetalert2/dist/sweetalert2.js';
+import 'sweetalert2/src/sweetalert2.scss';
 
 
 class ShippingContent extends Component {
@@ -14,6 +16,7 @@ class ShippingContent extends Component {
       shippingData: [],
       vehicleData: [],
       cityData: [],
+      shippingEdit: [],
       visible: false,
       shippingBackup: {},
       textBuscar: "",
@@ -32,6 +35,8 @@ class ShippingContent extends Component {
       select_vehicle: 0,
       select_ciudad_origen: 0,
       select_ciudad_destino: 0,
+      visible_actualizar: true,
+      visible_registrar:true,
 
     };
   }
@@ -39,7 +44,10 @@ class ShippingContent extends Component {
 
   openModal() {
     this.setState({
-      visible: true
+      visible: true,
+      visible_actualizar: true,
+      visible_registrar:false,
+   
     });
   }
 
@@ -48,6 +56,45 @@ class ShippingContent extends Component {
       visible: false
     });
   }
+
+  openModalEditar(id_envio) {
+    this.setState({
+      visible: true,
+      visible_actualizar: false,
+      visible_registrar:true,
+    })
+    //id_vehiculo = this.props.match.params.id_vehiculo;
+    const url = "http://localhost:3001/Shipping/editShipping/"+id_envio
+    Axios.get(url)
+    .then(res=>{
+      if (res.data.success) {
+        const data = res.data.data[0]
+        console.log(data);
+        this.setState({
+          shippingEdit:data,
+              id_envio:data.id_envio,
+              codigo_envio: data.codigo_envio,
+              nombre_producto: data.nombre_producto,
+              referencia: data.referencia, 
+              cantidad: data.cantidad,
+              fecha_inicio: data.fecha_inicio,
+              fecha_fin: data.fecha_fin,
+              valor_envio: data.valor_envio,
+              id_vehiculo: data.select_vehicle,
+              id_origen:data.select_ciudad_origen,
+              id_destino:data.select_ciudad_destino
+         
+        })
+      }
+      else {
+        alert("Error Edit Server")
+      }
+    })
+    .catch(error=>{
+      alert("Error server "+error)
+    })
+  }
+
 
   _fetchData() {
     Axios.get("http://localhost:3001/Shipping/")
@@ -177,7 +224,84 @@ class ShippingContent extends Component {
 
   };
 
+  onDelete(id){
+    Swal.fire({
+      title: 'Eliminar Envio',
+      text: '¿Está seguro de eliminar Envio?',
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Eliminar',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.value) {
+        this.sendDelete(id)
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        Swal.fire(
+          'Cancelado',
+          'No se eliminó Envio',
+          'error'
+        )
+      }
+    })
+  }
 
+  sendDelete(id_envio)
+  {
+    // url de backend
+    const baseUrl = "http://localhost:3001/Shipping/deleteShipping"    // parameter data post
+    // network
+    Axios.post(baseUrl,{
+      id_envio:id_envio
+    })
+    .then(response =>{
+      if (response.data.success) {
+        Swal.fire(
+          'Eliminado',
+          'El Envio fue eliminado',
+          'success'
+        )
+        this._fetchData();
+      }
+    })
+    .catch ( error => {
+      alert("Error  en linea 247 ")
+    })
+  }
+
+  
+  sendUpdate(){
+    //  get parameter id
+    let id_envio = this.state.id_envio;
+    console.log(id_envio);
+    // url de backend
+    const baseUrl = "http://localhost:3001/Shipping/shippingEdit/"+id_envio
+    // parametros de datos post
+    const datapost = {
+      codigo_envio: this.state.codigo_envio,
+      nombre_producto: this.state.nombre_producto,
+      referencia: this.state.referencia, 
+      cantidad: this.state.cantidad,
+      fecha_inicio: this.state.fecha_inicio,
+      fecha_fin: this.state.fecha_fin,
+      valor_envio: this.state.valor_envio,
+      id_vehiculo: this.state.select_vehicle,
+      id_origen:this.state.select_ciudad_origen,
+      id_destino:this.state.select_ciudad_destino
+    }
+
+    Axios.put(baseUrl,datapost)
+    .then(response=>{
+      if (response.data.success===true) {
+        alert(response.data.message)
+      }
+      else {
+        alert("Error")
+      }
+    }).catch(error=>{
+      alert("Error 34 "+error)
+    })
+
+   }
 
 
 
@@ -448,21 +572,22 @@ class ShippingContent extends Component {
           </Modal>
         </section>
 
-        <table className="table table-striped" id="tableContent" >
+        <table className="table table-striped" id="tableShipping" >
           <thead className="head-table">
             <tr>
-              <th scope="col">Codigo Envio</th>
-              <th scope="col">Carga</th>
-              <th scope="col">Valor Envio</th>
-              <th scope="col">Vehiculo Asignado</th>
-              <th scope="col">Ciudad Origen</th>
-              <th scope="col">Ciudad Destino</th>
-              <th scope="col">Estado Envio</th>
+              <th className="th-shipping" scope="col">Codigo Envio</th>
+              <th className="th-shipping" scope="col">Carga</th>
+              <th className="th-shipping" scope="col">Valor Envio</th>
+              <th className="th-shipping" scope="col">Vehiculo Asignado</th>
+              <th className="th-shipping" scope="col">Ciudad Origen</th>
+              <th className="th-shipping" scope="col">Ciudad Destino</th>
+              <th className="th-shipping" scope="col">Estado Envio</th>
+              <th className="th-shipping" colSpan="2">Acciones</th>
             </tr>
           </thead>
-          <tbody className="body-table">
+          <tbody className="body-table-shipping">
             {this.state.shippingData.map((data) => (
-              <tr className="tr-table">
+              <tr className="tr-Shipping">
                 <td scope="col">{data.codigo_envio}</td>
                 <td>{data.nombre_producto}</td>
                 <td>{data.valor_envio}</td>
@@ -470,7 +595,29 @@ class ShippingContent extends Component {
                 <td>{data.ciudad_origen}</td>
                 <td>{data.ciudad_destino}</td>
                 <td>{data.estado}</td>
-                <td>editar</td>
+                <td id="td-actions">
+                  
+                  <button
+                    type="button"
+                    className="btn-3 btn-primary "
+                    id="btn-asignar"
+                    value="Open"
+                    onClick={() => this.openModalEditar(data.id_envio)}
+                  >
+                    Editar
+                  </button>
+                </td>
+                <td id="td-actions">
+                  <button
+                    type="button"
+                    className="btn-3 btn-primary "
+                    id="btn-eliminar"
+                    value="Open"
+                    onClick={()=>this.onDelete(data.id_envio)}
+                  >
+                    Eliminar
+                  </button>
+                </td>
               </tr>
 
             ))}

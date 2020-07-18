@@ -85,3 +85,31 @@
     color: black;
   }
    */
+
+   .tr-Shipping{
+    width: 120%;
+  }
+  
+
+  #tableShipping {
+    width: 110%;
+    margin-bottom: 1rem;
+    color: #212529;
+}
+
+.body-table-shipping {
+  height: 290px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  position: absolute;
+  display: grid;
+  width: 70%;
+}
+
+.th-Shipping {
+  padding: 0px; 
+  vertical-align: top;
+  border-top: 1px solid #dee2e6;
+  width: 1%;
+  text-align: left;
+}
