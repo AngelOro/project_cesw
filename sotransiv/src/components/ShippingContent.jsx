@@ -458,11 +458,12 @@ class ShippingContent extends Component {
               <th scope="col">Ciudad Origen</th>
               <th scope="col">Ciudad Destino</th>
               <th scope="col">Estado Envio</th>
+              <th colSpan="2"> Acciones</th>
             </tr>
           </thead>
           <tbody className="body-table">
             {this.state.shippingData.map((data) => (
-              <tr className="tr-table">
+              <tr className="tr-shipping">
                 <td scope="col">{data.codigo_envio}</td>
                 <td>{data.nombre_producto}</td>
                 <td>{data.valor_envio}</td>
@@ -470,7 +471,14 @@ class ShippingContent extends Component {
                 <td>{data.ciudad_origen}</td>
                 <td>{data.ciudad_destino}</td>
                 <td>{data.estado}</td>
-                <td>editar</td>
+                <td> <button
+                    type="button"
+                    className="btn-3 btn-primary "
+                    id="btn-eliminar"
+                    value="Open"
+                  >
+                    Eliminar
+                  </button></td>
               </tr>
 
             ))}
