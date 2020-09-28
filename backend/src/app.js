@@ -1,14 +1,24 @@
-
 var express = require('express')
 var cors = require('cors')
 var app = express()
+const bodyParser = require('body-parser')
+
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }))
  
 app.use(cors())
  
-app.get('/user', function (req, res, next) {
+app.get('/', function (req, res, next) {
   res.json({msg: 'This is CORS-enabled for all origins!'})
 })
 
+app.post('/', function (req, res) {
+  res.send('POST request to the homepage');
+})
+
+app.put('/', function (req, res) {
+  res.send('put request to the homepage');
+})
 
 app.listen(3000, function () {
   console.log('CORS-enabled web server listening on port 3000')
@@ -18,13 +28,11 @@ app.listen(3000, function () {
 
 const routersShipping = require('./routes/shipping.routes');
 const routersVehicles = require('./routes/vehicle.routes');
-const routersUsers = require('./routes/user.routes')
 const routersConduct = require('./routes/conduct.routes')
 
 
 //Routes
 app.use('/Vehicle', routersVehicles);
-app.use('/user', routersUsers);
 app.use('/Shipping', routersShipping);
 app.use('/Conduct', routersConduct);
 

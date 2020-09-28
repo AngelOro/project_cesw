@@ -3,35 +3,28 @@ import "../styles/VehicleContent.css";
 import axios from "axios";
 
 class userContent extends Component {
-
-    constructor(props) {
-        super(props);
-        this.state = {
-          listUser: [],
-          visible: false,
-        };
-      }
-
-     
-    
-      componentDidMount() {
-        axios.get('http://192.168.1.2:3001/user/listUser')
-        .then(res => {
-            if(res.data.success){
-                const data = res.data.data
-                console.log(data);
-                this.setState({listUser: data})
-            }
-            else{
-                alert("Sorry")
-            }
-        })
-        .catch(error => {
-            alert("Error" + error)
-        });
-      }
-
-
+  constructor(props) {
+    super(props);
+    this.state = {
+      listUser: [],
+      visible: false,
+    };
+  }
+  componentDidMount() {
+    axios.get("http://192.168.56.1:3001/user/listUser")
+      .then((res) => {
+        if (res.data.success) {
+          const data = res.data.data;
+          console.log(data);
+          this.setState({ listUser: data });
+        } else {
+          alert("Sorry");
+        }
+      })
+      .catch((error) => {
+        alert("Error" + error);
+      });
+  }
 
   render() {
     return (

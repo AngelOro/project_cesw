@@ -3,6 +3,29 @@
   width: 100px;
   height: 35px;
 }
+#btn-asignar {
+  background-color: #0591c9e3;
+  width: 60px;
+  height: 35px;
+  font-size: 12px;
+  border-radius: 8px;
+}
+#btn-eliminar {
+  background-color: rgba(236, 34, 34, 0.836);
+  width: 60px;
+  height: 35px;
+  font-size: 12px;
+  border-radius: 8px;
+}
+
+
+#modalPlaca{
+  margin: 20px;
+}
+
+#labelPlaca{
+  margin: 0px 0px 30px;
+}
 
 /* .table {
   width: 100%;
@@ -14,6 +37,10 @@
 } */
 .table{
   position: static;
+}
+#td-actions{
+  padding: 12px 0px;
+  width: 70px;
 }
 .body-table{
   height: 290px;
@@ -40,6 +67,14 @@
 }
 .tr-table{
   width: 200%;
+}
+.tr-shipping{
+  width: 125%;
+}
+
+
+.tr_conduct{
+  width: 165%;
 }
 
 #edit-icon {
