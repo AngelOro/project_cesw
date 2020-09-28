@@ -1,4 +1,4 @@
-﻿# proyect_cesw
+﻿# project_cesw
 Proyecto de asignatura de Construcción de Elementos de Software Web.  
 
 ## Título del proyecto:
